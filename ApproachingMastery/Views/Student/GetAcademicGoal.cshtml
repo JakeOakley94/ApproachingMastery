@@ -1,0 +1,166 @@
+﻿@using DatabaseInteraction.Models
+@using System.Linq
+@model Student
+
+
+@{
+    Layout = null;
+}
+
+<style>
+
+    .modal-backdrop.in {
+        z-index: auto;
+    }
+</style>
+
+<h3 class="boldText"><u>Academic Goal Tracking</u></h3>
+
+<style>
+    .goalHeader {
+        background: #0099ff;
+        color: white;
+        height: 60px;
+        width: 90%;
+        display: flex;
+        align-items: center;
+    }
+
+        .goalHeader .buttons {
+            margin-left: auto;
+            margin-right: 10px;
+        }
+
+        .goalHeader .boldText {
+            margin-left: 10px;
+            font-size: 20px;
+        }
+
+        .goalHeader h5 {
+            color: white;
+            font-weight: bold;
+            vertical-align: central;
+            margin: auto;
+            display: inline-block;
+        }
+</style>
+<script type="text/javascript">
+    /*$(function () {
+        traverse($(".trackingSection"));
+    });*/
+
+    function traverse(parent) {
+        var data = parent.attr('data-id');
+        if (data !== undefined) alert(data);
+        parent.children().each(
+            function () {
+                traverse($(this));
+                //todo load the assignments
+            }
+        );
+    }
+
+    $(function () {
+        $(".deleteAcademicGoal").click(function () {
+            if (!dialogOpen) {
+                dialogOpen = true;
+                if (confirm("Are you sure you woudld like to delete this goal?")) {
+                    var goal_ID = $(this).attr('goal-id');
+                    $.ajax({
+                        method: 'POST',
+                        url: deleteAcademicGoalURL,
+                        data: {
+                            goalID: goal_ID,
+                        },
+                        datatype: 'json',
+                        success: function (data) {
+                            alert(data.Message);
+                            if (data.Success)
+                                loadAcademicGoals();
+                            dialogOpen = false;
+                        },
+                        error: function () {
+                            alert("Error removing assginment!");
+                            loadAcademicGoals();
+                            dialogOpen = false;
+                        }
+                    });
+                }
+                else {
+                    dialogOpen = false;
+                }
+            }
+        });
+    })
+
+    $(function () {
+        $(".editAcademicGoal").click(function () {
+            if (!dialogOpen) {
+                dialogOpen = true;
+                var goal_ID = $(this).attr('goal-id');
+                $.ajax({
+                    type: "GET",
+                    url: editAcademicGoalURL,
+                    contentType: "application/json; charset=utf-8",
+                    data: { goalID: goal_ID },
+                    datatype: "json",
+                    success: function (data) {
+                        if (data.html !== undefined)
+                            $("#AddEditGoal").html(data.html);
+                        else
+                            $("#AddEditGoal").html(data);
+                        //$('#EditStudentModal').modal(options);
+                        //$('#EditStudentModal').style.display = 'block';
+                        $("#AddEditGoalModal").modal('show');
+                    }
+                });
+            }
+        });
+    })
+
+    $(function () {
+        $(".addAcademicGoalAssignment").click(function () {
+            loadEditModal($(this), addGoalAssignmentURL, $("#AddEditGoal"), $("#AddEditGoalModal"), "goalID");
+        });
+    })
+
+</script>
+<div class="" style="        margin-bottom: 20px;">
+    <!--Academic tracking Section -->
+    <div class="trackingSection">
+
+        <!--Need to loop here through the Goals-->
+        @{
+            if (Model.AcademicGoals != null && Model.AcademicGoals.Count > 0)
+            {
+                foreach (Goal G in Model.AcademicGoals)
+                {
+
+                    string idString = $"goal-{G.GoalID}";
+                    <div class="TableFormat goalHeader ">
+                        <div class="boldText">Goal: @G.Description</div>
+                        <div class="buttons">
+                            <a href="javascript:void(0);" goal-id="{@G.GoalID}" class="btn btn-danger editAcademicGoal"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="javascript:void(0);" goal-id="{@G.GoalID}" class="btn btn-danger deleteAcademicGoal"><i class="fas fa-trash-alt"></i></a>
+                            <a href="javascript:void(0);" goal-id="{@G.GoalID}" class="btn btn-success addAcademicGoalAssignment"><i class="fas fa-newspaper"></i></a>
+                        </div>
+                    </div>
+
+                    <div id=@idString>
+
+
+                        <!-- Need to dynamically loop through assignments -->
+                        @{ Html.RenderPartial("GoalAssignments", G); }
+
+
+                        @*<button class="btn btn-primary bootStrapButtons buttonAnimation addTestingDataButton" onclick="document.getElementById('AssignmentModal').style.display = 'block'" style="        width: 190px !important"><span><i class="fa fa-plus"></i> Add Assignment</span></button>*@
+                    </div>
+                }
+            }
+            else
+            {
+                <h5>No information exists for Academic Goals</h5>
+            }
+        }
+    </div>
+</div>

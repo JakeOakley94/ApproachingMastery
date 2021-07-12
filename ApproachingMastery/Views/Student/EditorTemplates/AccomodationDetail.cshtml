@@ -1,0 +1,21 @@
+﻿@model DatabaseInteraction.Models.AccomodationDetail
+@{
+    Layout = null;
+}
+
+<!-- Main Content -->
+<div class="container" style="width: 100%;">
+   @Html.HiddenFor(m=>m.AccomodationID)
+    <br />
+    <!--Radio button for Goal or Objective-->
+    @Html.LabelFor(m => m.DetailType)
+    @Html.EnumDropDownListFor(m => m.DetailType)
+    <br/>
+    @Html.LabelFor(m => m.Value)
+    @Html.EditorFor(m => m.Value)
+</div>
+<!-- Footer and buttons -->
+<div class="container" style="background-color:#f1f1f1; width: 100%;">
+    <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+    <button type="button" onclick="$('#AddEditGoalModal').modal('hide');" class="cancelbtn btn btn-danger bootStrapButtons buttonAnimation"><span>Cancel</span></button>
+</div>

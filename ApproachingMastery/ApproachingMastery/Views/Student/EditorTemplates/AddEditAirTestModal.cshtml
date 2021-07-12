@@ -1,0 +1,67 @@
+﻿@model  ApproachingMastery.Models.AddEditAirTestModal
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/approaching-mastery_forms.css" />
+<script>
+    function cancelAirTest() {
+        $("#EditAirTestModal").modal("hide");
+        $("#AddAirTestModal").modal("hide");
+    }
+
+/**/</script>
+
+<div class="modal-header">
+    <!-- Dynamically insert AirTests  -->
+
+    @{
+        if (!Model.IsEditing)
+        {
+            <h4 class="modal-title">Add New AirTest</h4>
+        }
+        else
+        {
+            <h4 class="modal-title">Edit AirTest</h4>
+        }
+    }
+
+    <div class="container" style="width: 100%;">
+
+
+        <fieldset id="newAirTestField" class="amForm">
+
+            @Html.HiddenFor(m => m.Test.AirTestID)
+
+            <div class="inputBox" style="width:98% !important;">
+
+
+                @Html.LabelFor(m => m.Test.MathGrade, "Math Grade")
+                @Html.TextBoxFor(m => m.Test.MathGrade, new { @type = "number", @min = "0", @max = "100" })
+
+            </div>
+
+            <div class="inputBox">
+
+                @Html.LabelFor(m => m.Test.ReadingGrade, "Reading Grade")
+                @Html.TextBoxFor(m => m.Test.ReadingGrade, new { @type = "number", @min = "0", @max = "100" })
+            </div>
+
+            <div class="inputBox">
+
+                @Html.LabelFor(m => m.Test.Year, "Test Year")
+                @Html.TextBoxFor(m => m.Test.Year, new { @type = "number", @min = "1950", @max = "3000" })
+            </div>
+
+
+        </fieldset>
+
+
+    </div>
+    <!-- Footer and buttons -->
+    <div class="container" style="background-color:#f1f1f1; width: 100%;">
+        <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+        <button type="button" onclick="$('#AddEditGoalModal').modal('hide');" class="cancelbtn btn btn-danger bootStrapButtons buttonAnimation"><span>Cancel</span></button>
+    </div>
+</div>

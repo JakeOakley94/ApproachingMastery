@@ -1,0 +1,27 @@
+﻿@model  DatabaseInteraction.Models.Student
+@{
+    Layout = "";
+}
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="modal-content animate">
+        <div class="modal-header">
+            <!-- Dynamically insert students name -->
+            <h4 class="modal-title">Pro-Core Reading</h4>
+        </div>
+        <!-- Main Content -->
+        <div class="container">
+            @Html.LabelFor(m => m.Fall)
+            @Html.TextBoxFor(m => m.Fall, new { @type = "number", @min = "0", @max = "100" })
+            @Html.LabelFor(m => m.Winter)
+            @Html.TextBoxFor(m => m.Winter, new { @type = "number", @min = "0", @max = "100" })
+            @Html.LabelFor(m => m.Spring)
+            @Html.TextBoxFor(m => m.Spring, new { @type = "number", @min = "0", @max = "100" })
+        </div>
+        <!-- Footer and buttons -->
+        <div class="container" style="background-color:#f1f1f1">
+            <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+            <button type="button" onclick="document.getElementById('proCoreModal').style.display='none'" class="cancelbtn btn btn-danger bootStrapButtons buttonAnimation"><span>Cancel</span></button>
+        </div>
+    </div>
+}

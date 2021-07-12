@@ -1,0 +1,21 @@
+﻿@model  DatabaseInteraction.Models.Assignment
+@{
+    Layout = "";
+}
+
+<script>
+  
+</script>
+
+<div class="modal-content animate">
+    <div class="modal-header">
+        <!-- Dynamically insert students name -->
+        <h4 class="modal-title">Add New Assignment</h4>
+    </div>
+    @using (Ajax.BeginForm("AddGoalAssignment", "Student", new AjaxOptions { HttpMethod = "POST", OnSuccess = "assignmentAdded" }))
+    {
+        @Html.EditorFor(m => m)
+    }
+
+</div>
+

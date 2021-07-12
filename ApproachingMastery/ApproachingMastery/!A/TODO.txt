@@ -1,0 +1,32 @@
+TO DO LIST
+
+Modify Modal For Login (textboxes not aligned)
+
+When a User logs in, dynamically populate their name in the NavBar where it says Username (maybe grab the users image and update the avatar as well)
+
+Center Logo Image in Left Corner
+
+Modify NavBar to be Modular 
+
+Update top 4 squares on dashboard, to reflect accurate counts
+
+Ensure all Add buttons work on StudentViewer.
+
+Add functionality to NavBar
+
+Add Functionality To Messages
+
+ADD CRUD Features (UPDATE, DELETE) 
+
+ADD Ability to Share Students, Requires the following : DB Modification, Modal to select teacher and student to share
+
+Publish Website to AWS
+
+
+
+
+
+WOULD BE NICE
+
+WRITE UP TIMELINE AND WIRE DATABASE TO IT
+

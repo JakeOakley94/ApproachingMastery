@@ -1,0 +1,111 @@
+﻿@model  ApproachingMastery.Models.AddEditStudentModal
+@{
+    Layout = null;
+}
+<link rel="stylesheet" type="text/css" href="~/Content/approaching-mastery_forms.css" />
+
+
+<div class="modal-header">
+    <!-- Dynamically insert students name -->
+    @{
+        if (!Model.IsEditing)
+        {
+            <h4 class="modal-title">Add New Student</h4>
+        }
+        else
+        {
+            <h4 class="modal-title">Edit Student</h4>
+        }
+    }
+
+
+</div>
+<!-- Main Content -->
+<div class="container" style="width: 100%;">
+    @{
+        
+        if (!Model.IsEditing)
+        {
+            <div style="vertical-align:central">
+                @Html.RadioButtonFor(m => m.AddExistingStudent, true)
+                <label style="display:inline-block !important;">Select an existing student</label>
+            </div>
+            <fieldset id="existingStudentField" class="amForm">
+                @Html.DropDownListFor(m => m.ExistingStudent, new SelectList(Model.User.AvailableStudents, "StudentID", "FullName"))
+            </fieldset>
+
+            <div style="vertical-align:central">
+                @Html.RadioButtonFor(m => m.AddExistingStudent, false)
+                <label style="display:inline-block">Add a new student</label>
+            </div>
+        }
+    }
+    <fieldset id="newStudentField" @(Model.IsEditing?"":"disabled=disabled") class="amForm">
+        @Html.HiddenFor(m=>m.NewStudent.StudentID)
+        @Html.HiddenFor(m=>m.NewStudent.IsActive)
+        <div class="inputBox" style="width:98% !important;">
+            @Html.Label("School")
+            @Html.DropDownListFor(m => m.StudentSchool, new SelectList(Model.User.Schools, "SchoolID", "SchoolName"))
+        </div>
+        <div class="inputBox">
+            @Html.LabelFor(m => m.NewStudent.FirstName)
+            @Html.TextBoxFor(m => m.NewStudent.FirstName)
+        </div>
+        <div class="inputBox">
+            @Html.LabelFor(m => m.NewStudent.MiddleName)
+            @Html.TextBoxFor(m => m.NewStudent.MiddleName)
+        </div>
+        <div class="inputBox">
+            @Html.LabelFor(m => m.NewStudent.LastName)
+            @Html.TextBoxFor(m => m.NewStudent.LastName)
+        </div>
+        <div class="inputBox">
+            @Html.LabelFor(m => m.NewStudent.GradeLevel)
+            @Html.TextBoxFor(m => m.NewStudent.GradeLevel, new { @type = "number", @min = "0", @max = "12" })
+        </div>
+        <div class="inputBox">
+            @Html.LabelFor(m => m.NewStudent.Birthday)
+            @Html.EditorFor(m => m.NewStudent.Birthday)
+        </div>
+        <div class="inputBox">
+            @Html.LabelFor(m => m.NewStudent.IEPDueDate)
+            @Html.EditorFor(m => m.NewStudent.IEPDueDate)
+        </div>
+        <div class="inputBox">
+            @Html.LabelFor(m => m.NewStudent.ETRDueDate)
+            @Html.EditorFor(m => m.NewStudent.ETRDueDate)
+        </div>
+
+    </fieldset>
+
+
+</div>
+
+
+
+<!-- Footer and buttons -->
+<div class="container" style="background-color:#f1f1f1; width: 100%;">
+    <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+    <button type="button" onclick="closeAddStudent()" class="cancelbtn btn btn-danger bootStrapButtons buttonAnimation"><span>Cancel</span></button>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("input[type=radio][name=AddExistingStudent]").change(function () {
+            var value = $(this).val();
+            if (value == 'False') {
+                $('#existingStudentField').prop('disabled', true);
+                $('#newStudentField').prop('disabled', false);
+            }
+            else {
+                $('#existingStudentField').prop('disabled', false);
+                $('#newStudentField').prop('disabled', true);
+            }
+        });
+    });
+
+    function closeAddStudent() {
+        $("#addStudentModal").modal('hide');
+    }
+
+</script>
+

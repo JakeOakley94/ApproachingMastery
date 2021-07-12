@@ -1,0 +1,102 @@
+﻿@using DatabaseInteraction.Models
+@using System.Linq
+@model Student
+
+
+@{
+
+    Layout = null;
+}
+
+<script>
+    function RemoveAccomodationTest(guidTestID) {
+        if (confirm("Are you sure you would like to delete this accommodation?")) {
+            $.ajax({
+                method: 'POST',
+                url: deleteAccommodationDetailURL,
+                data: {
+                    accomodationTestID: guidTestID,
+                },
+                datatype: 'json',
+                success: function (data) {
+                    alert(data.Message);
+                    if (data.Success) {
+                        loadMathAccomodationTests();
+                        loadReadingAccomodationTests();
+                        loadWritingAccomodationTests();
+                    }
+                    dialogOpen = false;
+                },
+                error: function () {
+                    alert("Error removing assginment!");
+                    loadMathAccomodationTests();
+                    loadReadingAccomodationTests();
+                    loadWritingAccomodationTests();
+                    dialogOpen = false;
+                }
+            });
+        }
+    }
+</script>
+
+<h4 class="boldText">Math Tests</h4>
+<table id="MathAccomodationTests" class="TableFormat">
+    <tr>
+
+        <th>Date</th>
+        <th>Test Given</th>
+        <th>Grade</th>
+        <th>Edit</th>
+        <th>Delete</th>
+
+    </tr>
+
+
+    <!-- Need to dynamically populate these / placeholder -->
+    @{
+
+        int Index = 0;
+
+
+        AccomodationTest.AccomodationTestType type = AccomodationTest.AccomodationTestType.Math;
+
+
+
+        foreach (AccomodationTest at in Model.AccomodationTests)
+        {
+
+            <tr>
+
+                @{
+
+
+                    if (Model.AccomodationTests[Index].Type == type)
+                    {
+
+                        string formattedDate = Model.AccomodationTests[Index].Date.ToString("MM/dd/yyyy");
+
+                        <td> @formattedDate </td>
+
+                        <td> @Model.AccomodationTests[Index].TestGiven </td>
+
+                        <td> @Model.AccomodationTests[Index].Percentile </td>
+
+                    }
+
+
+                    <td><a href="javascript:void(0);" data-id="{@Model.AccomodationTests[Index].TestID}" class="btn btn-danger editMathTest"><i class="fas fa-pencil-alt"></i></a></td>
+                    <td><a href="javascript:void(0);" data-id="{@Model.AccomodationTests[Index].TestID}" class="btn btn-danger deleteMathTest"><i class="fas fa-trash-alt"></i></a></td>
+
+                    Index += 1;
+
+                }
+
+
+            </tr>
+
+        }
+
+    }
+
+</table>
+

@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[TImages]
+(
+	 guidImageID		UNIQUEIDENTIFIER		NOT NULL DEFAULT NEWID()
+	,blbImage			VARBINARY(MAX)			NOT NULL
+	CONSTRAINT TImages_PK PRIMARY KEY (guidImageID)
+)

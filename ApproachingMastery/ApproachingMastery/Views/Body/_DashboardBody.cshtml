@@ -1,0 +1,279 @@
+﻿<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Dashboard</h1>
+        </div>
+    </div><!--/.row-->
+
+    <div class="panel panel-container">
+        <div class="row">
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-teal panel-widget border-right">
+                    <div class="row no-padding">
+                        <em class="fas fa-chalkboard-teacher fa-2x color-blue "></em>
+                        <!-- COUNT(intTeacherID) -->
+                        <div class="large">120</div>
+                        <div class="text-muted">Teachers</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-blue panel-widget border-right">
+                    <div class="row no-padding">
+                        <em class="fas fa-user-graduate fa-2x color-orange"></em>
+                        <!-- COUNT(intStudentID)-->
+                        <div class="large">52</div>
+                        <div class="text-muted">Students</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-orange panel-widget border-right">
+                    <div class="row no-padding">
+                        <em class="fas fa-tasks fa-2x color-green"></em>
+                        <!-- COUNT(Goals)Where blnComplete = true(1)-->
+                        <div class="large">24</div>
+                        <div class="text-muted">Goals Met</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-red panel-widget ">
+                    <div class="row no-padding">
+                        <em class="fas fa-check fa-2x color-red"></em>
+
+                        <div class="large">25.2k</div>
+                        <div class="text-muted">Goals Pending</div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.row-->
+    </div>
+
+    <!-- END TOP TABS -->
+    <!-- START STUDENT TABLE -->
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            To-do List
+            <ul class="pull-right panel-settings panel-button-tab-right">
+                <li class="dropdown">
+                    <a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
+                        <em class="fa fa-cogs"></em>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                            <ul class="dropdown-settings">
+                                <li>
+                                    <a href="#">
+                                        <em class="fa fa-cog"></em> Settings 1
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <em class="fa fa-cog"></em> Settings 2
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <em class="fa fa-cog"></em> Settings 3
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+        </div>
+
+        <div class="panel-body">
+            <table class="w3-table w3-striped w3-white">
+                <tr>
+                    <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+                    <td>New record, over 90 views.</td>
+                    <td><i>10 mins</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
+                    <td>Database error.</td>
+                    <td><i>15 mins</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+                    <td>New record, over 40 users.</td>
+                    <td><i>17 mins</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+                    <td>New comments.</td>
+                    <td><i>25 mins</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
+                    <td>Check transactions.</td>
+                    <td><i>28 mins</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
+                    <td>CPU overload.</td>
+                    <td><i>35 mins</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+                    <td>New shares.</td>
+                    <td><i>39 mins</i></td>
+                </tr>
+
+            </table>
+
+            <div class="panel-footer">
+                <div class="input-group">
+
+                    <button class="btn btn-primary btn-md" id="btnAddStudent">Add Student</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- END STUDENT TABLE -->
+
+    <!-- START CALENDAR -->
+
+    <div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Calendar
+						<ul class="pull-right panel-settings panel-button-tab-right">
+							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
+								<em class="fa fa-cogs"></em>
+							</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li>
+										<ul class="dropdown-settings">
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 1
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 2
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 3
+											</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body">
+                        <div id="calendar"></div>
+					</div>
+				</div>
+
+        </div>
+			
+                        <!-- END CALENDAR -->
+
+                        <!-- START TIMELINE -->
+                        <div class="col-md-6">
+                            <div class="panel panel-default ">
+                                <div class="panel-heading">
+                                    Timeline
+                                    <ul class="pull-right panel-settings panel-button-tab-right">
+                                        <li class="dropdown">
+                                            <a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
+                                                <em class="fa fa-cogs"></em>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li>
+                                                    <ul class="dropdown-settings">
+                                                        <li>
+                                                            <a href="#">
+                                                                <em class="fa fa-cog"></em> Settings 1
+                                                            </a>
+                                                        </li>
+                                                        <li class="divider"></li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <em class="fa fa-cog"></em> Settings 2
+                                                            </a>
+                                                        </li>
+                                                        <li class="divider"></li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <em class="fa fa-cog"></em> Settings 3
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+                                </div>
+                                <div class="panel-body timeline-container">
+                                    <ul class="timeline">
+                                        <li>
+                                            <div class="timeline-badge"><em class="glyphicon glyphicon-pushpin"></em></div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="timeline-badge primary"><em class="glyphicon glyphicon-link"></em></div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="timeline-badge"><em class="glyphicon glyphicon-camera"></em></div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="timeline-badge"><em class="glyphicon glyphicon-paperclip"></em></div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!--/.col-->
+                        <!-- END TIMELINE -->
+
+    </div>
+
+
+

@@ -1,0 +1,2 @@
+C:\Users\jakeo\Source\Repos\capstone\ApproachingMastery\ApproachingMastery\obj\Debug\ApproachingMastery.csprojAssemblyReference.cache
+C:\Users\jakeo\Source\Repos\capstone\ApproachingMastery\ApproachingMastery\obj\Debug\ApproachingMastery.csproj.CoreCompileInputs.cache

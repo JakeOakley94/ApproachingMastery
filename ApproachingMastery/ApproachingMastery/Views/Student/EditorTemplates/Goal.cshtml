@@ -1,0 +1,41 @@
+﻿@model DatabaseInteraction.Models.Goal
+@{
+    Layout = null;
+}
+
+
+<div class="modal-header">
+    <!-- Dynamically insert students name -->
+    <h4 class="modal-title">Add New Goal or Objective</h4>
+</div>
+<!-- Main Content -->
+<div class="container" style="width: 100%;">
+    @Html.HiddenFor(m => m.GoalArea)
+    @Html.HiddenFor(m=>m.AssignedBy)
+    @Html.HiddenFor(m=>m.GoalID)
+    <br />
+    <!--Radio button for Goal or Objective-->
+    @Html.LabelFor(m => m.GoalType, "Goal Type")
+    @Html.EnumDropDownListFor(model => model.GoalType)
+
+    <br />
+    <!--TextBox for name of the Goal or Objective-->
+    @Html.LabelFor(m => m.Description)
+    @Html.EditorFor(m => m.Description)
+
+    <br />
+    <!--Due Date-->
+    @Html.LabelFor(m => m.DueDate, "Due Date")
+    @Html.EditorFor(m => m.DueDate)
+
+    <br />
+    <!-- DateAssigned-->
+    @Html.LabelFor(m => m.DateAssigned, "Date Assigned")
+    @Html.EditorFor(m => m.DateAssigned)
+
+</div>
+<!-- Footer and buttons -->
+<div class="container" style="background-color:#f1f1f1; width: 100%;">
+    <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+    <button type="button" onclick="document.getElementById('AddEditGoalModal').style.display = 'none'" class="cancelbtn btn btn-danger bootStrapButtons buttonAnimation"><span>Cancel</span></button>
+</div>

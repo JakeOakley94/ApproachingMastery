@@ -1,0 +1,145 @@
+﻿
+@using DatabaseInteraction.Models
+
+@model Goal
+<script>
+
+    $(function () {
+        $("#AddEditGoalModal").on('hide.bs.modal', function () {
+            dialogOpen = false;
+        })
+    })
+
+    $(function () {
+        $(".deleteGoalAssignment").click(function () {
+            if (!dialogOpen) {
+                dialogOpen = true;
+                if (confirm("Are you sure you woudld like to delete this assignment?")) {
+                    var goal_ID = $(this).attr('goal-id');
+                    var assignment_ID = $(this).attr('assignment-id');
+                    $.ajax({
+                        method: 'POST',
+                        url: deleteGoalAssignmentURL,
+                        data: {
+                            goalID: goal_ID,
+                            assignmentID: assignment_ID
+                        },
+                        datatype: 'json',
+                        success: function (data) {
+                            alert(data.Message);
+                            if (data.Success)
+                                loadGoalAssignments(goal_ID);
+                            dialogOpen = false;
+                        },
+                        error: function () {
+                            alert("Error removing assginment!");
+                            loadGoalAssignments(goal_ID);
+                            dialogOpen = false;
+                        }
+                    });
+                }
+                else {
+                    dialogOpen = false;
+                }
+            }
+        });
+    })
+
+    $(function () {
+        $(".editAssignment").click(function () {
+            if (!dialogOpen) {
+                dialogOpen = true;
+                var goal_ID = $(this).attr('goal-id');
+                var assignment_ID = $(this).attr('assignment-id');
+                $.ajax({
+                    method: 'GET',
+                    url: editGoalAssignmentURL,
+                    data: {
+                        goalID: goal_ID,
+                        assignmentID: assignment_ID
+                    },
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data.Success) {
+                            $("#AddEditGoal").html(data.html);
+                            $("#AddEditGoalModal").modal('show');
+                        }
+                        else {
+                            alert(data.Message);
+                            dialogOpen = false;
+                        }
+
+                    },
+                    error: function () {
+                        alert("Error getting assginment!");
+                    }
+
+                });
+            }
+        });
+    })
+
+
+
+</script>
+
+
+@{
+    string spinnerID = $"spinner-{Model.GoalID}";
+    <div id=@spinnerID style="display:none;">
+        <i class='fa fa-circle-o-notch fa-spin fa-5x'></i><br />Loading Please Wait...
+    </div>
+}
+<div id="@Model.GoalID-assignments">
+    <table class="TableFormat">
+        <tr>
+            <th style="width:12%">Completion Date</th>
+            <th>Assignment</th>
+            <th style="width:5%">Score</th>
+            <th style="width:5%">Image</th>
+            <th style="width:5%; text-align:center;">Edit</th>
+            <th style="width:5%; text-align:center;">Delete</th>
+        </tr>
+        @if (Model.Assignments.Count > 0)
+        {
+            foreach (Assignment As in Model.Assignments)
+            {
+                <tr>
+                    @if (As.CompletionDate != null)
+                    {
+
+                        string formattedTime = ((DateTime)As.CompletionDate).ToString("MM/dd/yyyy");
+                        <td>
+                            @formattedTime
+                        </td>
+
+                    }
+                    else
+                    {
+                        <td> Not Completed! </td>
+                    }
+                    <td> @As.Details </td>
+                    <td> @As.Score </td>
+                    <td> @As.Image </td>
+                    <td style="text-align:center;">
+                        <a href="javascript:void(0);" goal-id="{@Model.GoalID}" assignment-id="@As.AssignmentID" class="btn btn-danger editAssignment"><i class="fas fa-pencil-alt"></i></a>
+                    </td>
+                    <td style="text-align:center;">
+                        <a href="javascript:void(0);" goal-id="{@Model.GoalID}" assignment-id="@As.AssignmentID" class="btn btn-danger deleteGoalAssignment"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" style="        text-align: center;"> No Data Exists!</td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+
+
+

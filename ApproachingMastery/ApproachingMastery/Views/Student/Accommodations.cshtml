@@ -1,0 +1,42 @@
+﻿@using ApproachingMastery.Models
+@model DatabaseInteraction.Models.Accomodation
+
+
+@{
+    Layout = "";
+}
+<script>
+    function accommodationAdded(data) {
+         if (data.Success) {
+            $("#AddEditGoalModal").modal('hide');
+        }
+        alert(data.Message);
+        loadAccomodationsList();
+    }
+
+
+
+</script>
+
+@using (Ajax.BeginForm("AddAccommodation","Student",new AjaxOptions {HttpMethod = "POST", OnSuccess = "accommodationAdded" }))
+{
+    <div class="modal-content animate">
+        <div class="modal-header">
+            <!-- Dynamically insert students name -->
+            <h4 class="modal-title">Add new accommodation</h4>
+        </div>
+        <!-- Main Content -->
+        <!-- Dynamically populate checked or not checked when screen loads -->
+        <div class="container" style="width: 100%;">
+
+         @Html.LabelFor(m => m.AccomodationType, "Accomodation Type")
+         @Html.EnumDropDownListFor(model => model.AccomodationType)
+            <br />
+        </div>
+        <!-- Footer and buttons -->
+        <div class="container" style="background-color:#f1f1f1; width: 100%;">
+            <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+            <button type="button" onclick="$('#AddEditGoalModal').modal('hide');" class="cancelbtn btn btn-danger bootStrapButtons buttonAnimation"><span>Cancel</span></button>
+        </div>
+    </div>
+}

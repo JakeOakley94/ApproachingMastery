@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>dbApproachingMastery</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{f8cf3dad-87ce-44d6-9a5c-1be7c0720470}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ApproachingMasteryDatabase</RootNamespace>
+    <AssemblyName>ApproachingMastery</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <GenerateCreateScript>True</GenerateCreateScript>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <SqlTargetName>dbApproachingMastery</SqlTargetName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Snapshots" />
+    <Folder Include="Tables" />
+    <Folder Include="Tables\SchoolDistricts" />
+    <Folder Include="Tables\Students" />
+    <Folder Include="Tables\Users" />
+    <Folder Include="Tables\Teachers" />
+    <Folder Include="Tables\Messages" />
+    <Folder Include="Tables\Accomodations" />
+    <Folder Include="Functions" />
+    <Folder Include="Functions\Users" />
+    <Folder Include="Views" />
+    <Folder Include="Views\Users" />
+    <Folder Include="Post Deployment Scripts" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="Test Scripts" />
+    <Folder Include="Views\SchoolDistricts" />
+    <Folder Include="Tables\Tests" />
+    <Folder Include="Tables\Goals" />
+    <Folder Include="StoredProcedures\UserLogins" />
+    <Folder Include="Functions\UserLogins" />
+    <Folder Include="Views\UserLogins" />
+    <Folder Include="Post Deployment Scripts\TestUsers" />
+    <Folder Include="OtherScripts" />
+    <Folder Include="StoredProcedures\Users" />
+    <Folder Include="StoredProcedures\Students" />
+    <Folder Include="Post Deployment Scripts\StudentTestData" />
+    <Folder Include="StoredProcedures\Goals" />
+    <Folder Include="Views\Students" />
+    <Folder Include="StoredProcedures\Messages" />
+    <Folder Include="Views\Message" />
+    <Folder Include="StoredProcedures\Tests" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\SchoolDistricts\TSchoolDistricts.sql" />
+    <Build Include="Tables\SchoolDistricts\TSchoolDistrictUsers.sql" />
+    <Build Include="Tables\SchoolDistricts\TSchools.sql" />
+    <Build Include="Tables\SchoolDistricts\TSchoolUsers.sql" />
+    <Build Include="Tables\SchoolDistricts\TSchoolStudents.sql" />
+    <Build Include="Tables\SchoolDistricts\TImages.sql" />
+    <Build Include="Tables\Students\TStudents.sql" />
+    <Build Include="Tables\Users\TUserLogins.sql" />
+    <Build Include="Tables\Users\TUsers.sql" />
+    <Build Include="Tables\Users\TUserRoles.sql" />
+    <Build Include="Tables\Users\TUserLoginEventTypes.sql" />
+    <Build Include="Tables\Users\TUserLoginsEvents.sql" />
+    <Build Include="Tables\Users\TUserLoginPasswords.sql" />
+    <Build Include="Tables\Teachers\TTeacherStudents.sql" />
+    <Build Include="Tables\Messages\TMessages.sql" />
+    <Build Include="Tables\Students\TStudentComments.sql" />
+    <Build Include="Tables\Accomodations\TAccomodations.sql" />
+    <Build Include="Tables\Accomodations\TStudentAccomodationDetails.sql" />
+    <Build Include="Tables\Students\TStudentAccomodations.sql" />
+    <Build Include="Tables\Accomodations\TAccomodationDetailTypes.sql" />
+    <Build Include="Functions\Users\ufnGetLastNPasswords.sql" />
+    <Build Include="Functions\Users\ufnHashPassword.sql" />
+    <Build Include="Views\Users\VAllUserInformation.sql" />
+    <PostDeploy Include="Post Deployment Scripts\AddDefaultValues.sql" />
+    <Build Include="StoredProcedures\uspAddSchoolDistrict.sql" />
+    <Build Include="StoredProcedures\uspAddSchool.sql" />
+    <Build Include="Tables\SchoolDistricts\TSchoolDistrictSchools.sql" />
+    <Build Include="Views\SchoolDistricts\VSchoolDistrictSchools.sql" />
+    <Build Include="Tables\Tests\TTests.sql" />
+    <Build Include="Tables\Tests\TSemesters.sql" />
+    <Build Include="Tables\Students\TStudentTests.sql" />
+    <Build Include="Tables\Tests\TAirTests.sql" />
+    <Build Include="Tables\Students\TStudentAirTests.sql" />
+    <Build Include="Tables\Tests\TAccomodationTests.sql" />
+    <Build Include="Tables\Accomodations\TStudentAccomodationTests.sql" />
+    <Build Include="Tables\Goals\TGoalAreas.sql" />
+    <Build Include="Tables\Goals\TGoalTypes.sql" />
+    <Build Include="Tables\Goals\TGoals.sql" />
+    <Build Include="Tables\Students\TStudentGoals.sql" />
+    <Build Include="Tables\Students\TStudentObjectives.sql" />
+    <Build Include="Tables\Goals\TGoalAssignments.sql" />
+    <Build Include="Tables\Students\TStudentsABCCharts.sql" />
+    <Build Include="Tables\Tests\TTestNames.sql" />
+    <Build Include="Tables\Users\TPasswordResetTokens.sql" />
+    <Build Include="Tables\Users\TUserLoginPasswordResetTokens.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspLoginUser.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspAddLoginEvent.sql" />
+    <Build Include="Functions\UserLogins\ufnCheckAccountLocked.sql" />
+    <Build Include="Views\UserLogins\VInvalidUserLoginAttempts.sql" />
+    <Build Include="Views\UserLogins\VUserLoginPasswordResets.sql" />
+    <Build Include="Views\UserLogins\VUserLoginSuccess.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspCreateNewLogin.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspUpdatePassword.sql" />
+    <Build Include="Post Deployment Scripts\TestUsers\uspInsertDefaults.sql" />
+    <Build Include="Post Deployment Scripts\TestUsers\uspAddTestAccounts.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspGetLoginInfo.sql" />
+    <Build Include="Views\UserLogins\VUserLogins.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspCheckDomainExists.sql" />
+    <Build Include="StoredProcedures\Users\uspAddUpdateUserInfo.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspValidateEmail.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspCreatePasswordResetToken.sql" />
+    <Build Include="Views\UserLogins\VUserLoginPasswordResetTokens.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspVerifyPasswordResetToken.sql" />
+    <Build Include="StoredProcedures\uspRemoveAssignment.sql" />
+    <Build Include="StoredProcedures\Students\uspGetStudent.sql" />
+    <Build Include="Post Deployment Scripts\StudentTestData\uspAddSampleStudents.sql" />
+    <Build Include="StoredProcedures\Students\uspAddUpdateStudent.sql" />
+    <Build Include="StoredProcedures\Goals\uspAddUpdateGoal.sql" />
+    <Build Include="StoredProcedures\Goals\uspAddAssignment.sql" />
+    <Build Include="StoredProcedures\Goals\uspGetAssignment.sql" />
+    <Build Include="StoredProcedures\Goals\uspRemoveGoal.sql" />
+    <Build Include="StoredProcedures\Students\uspAddStudentGoal.sql" />
+    <Build Include="StoredProcedures\Students\uspGetStudentGoals.sql" />
+    <Build Include="Views\Students\VStudentGoals.sql" />
+    <Build Include="StoredProcedures\Students\uspAddStudentObjective.sql" />
+    <Build Include="StoredProcedures\Students\uspGetStudentObjectives.sql" />
+    <Build Include="Views\Students\VStudentObjectives.sql" />
+    <Build Include="StoredProcedures\Goals\uspRemoveObjective.sql" />
+    <Build Include="StoredProcedures\Users\uspGetStudents.sql" />
+    <Build Include="Views\VTeacherStudents.sql" />
+    <Build Include="StoredProcedures\Students\uspAddUpdateComment.sql" />
+    <Build Include="StoredProcedures\Messages\uspAddUpdateMessage.sql" />
+    <Build Include="Views\Message\VStudentMessages.sql" />
+    <Build Include="StoredProcedures\Messages\uspGetStudentComments.sql" />
+    <Build Include="StoredProcedures\Messages\uspGetMessageReplies.sql" />
+    <Build Include="StoredProcedures\Users\uspGetTeachers.sql" />
+    <Build Include="StoredProcedures\Students\uspGetStudentTests.sql" />
+    <Build Include="StoredProcedures\Tests\uspAddUpdateTest.sql" />
+    <Build Include="StoredProcedures\Students\uspAddStudentTest.sql" />
+    <Build Include="StoredProcedures\Students\uspAddStudentAirTest.sql" />
+    <Build Include="StoredProcedures\Tests\uspAddUpdateAirTest.sql" />
+    <Build Include="StoredProcedures\Students\uspGetStudentAirTests.sql" />
+    <Build Include="StoredProcedures\Students\uspAddUpdateABCEntry.sql" />
+    <Build Include="Tables\Students\TABCEntries.sql" />
+    <Build Include="StoredProcedures\Students\uspAddStudentABCEntry.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspAddTeacherStudent.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspGetTeacherSchools.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspGetAvailableStudents.sql" />
+    <Build Include="StoredProcedures\Students\uspGetStudentABCCharts.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspRemoveStudentFromTeacher.sql" />
+    <Build Include="StoredProcedures\Tests\uspRemoveAirTest.sql" />
+    <Build Include="StoredProcedures\Users\uspGetUser.sql" />
+    <Build Include="StoredProcedures\UserLogins\uspGetUserLogin.sql" />
+    <Build Include="StoredProcedures\Tests\uspGetAirTest.sql" />
+    <Build Include="Tables\Tests\TAccomodationTestTypes.sql" />
+    <Build Include="StoredProcedures\Students\uspGetStudentAccomodationTests.sql" />
+    <Build Include="StoredProcedures\Students\uspRemoveStudentABCEntry.sql" />
+    <Build Include="StoredProcedures\Students\uspGetStudentAccomodations.sql" />
+    <Build Include="StoredProcedures\Tests\uspRemoveAccomodationTest.sql" />
+    <Build Include="StoredProcedures\Tests\uspAddUpdateStudentAccomodationTest.sql" />
+    <Build Include="StoredProcedures\Students\uspGetStudentAccommodationDetails.sql" />
+    <Build Include="StoredProcedures\uspAddStudentAccommodationDetail.sql" />
+    <Build Include="StoredProcedures\uspRemoveStudentAccommodationDetail.sql" />
+    <Build Include="StoredProcedures\uspEditStudentAccommodationDetail.sql" />
+    <Build Include="StoredProcedures\Students\uspRemoveStudentAccommodation.sql" />
+    <Build Include="StoredProcedures\Students\uspAddStudentAccommodation.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ApproachingMasteryDatabase.publish.xml" />
+    <None Include="Test Scripts\SchoolDistrictTests.sql" />
+    <None Include="dbApproachingMastery_AWS.publish.xml" />
+    <None Include="dbApproachingMastery.publish.xml" />
+    <None Include="OtherScripts\GrantExecutePermissions.sql" />
+    <None Include="Snapshots\dbApproachingMastery_20190404_01-23-46.dacpac" />
+    <Build Include="StoredProcedures\Goals\uspGetGoalCount.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="InsertAccomodations.sql" />
+  </ItemGroup>
+</Project>

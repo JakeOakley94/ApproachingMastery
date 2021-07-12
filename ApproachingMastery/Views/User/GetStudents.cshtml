@@ -1,0 +1,89 @@
+﻿@using DatabaseInteraction.Models
+@using System.Linq
+@model UserLogin
+
+@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+    $(function () {
+        $(".editStudent").click(function () {
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            $.ajax({
+                type: "GET",
+                url: editStudentURL,
+                contentType: "application/json; charset=utf-8",
+                data: { "studentID": id },
+                datatype: "json",
+                success: function (data) {
+                    $('#editStudentContent').html(data);
+                    //$('#EditStudentModal').modal(options);
+                    //$('#EditStudentModal').style.display = 'block';
+                    $('#EditStudentModal').modal('show');
+                },
+                error: function () {
+                    alert("Error loading student data");
+                }
+            });
+        });
+    });
+
+    $(function () {
+    $(".deactivateStudent").click(function () {
+        var $buttonClicked = $(this);
+        var id = $buttonClicked.attr('data-id');
+        //var options = { "backdrop": "static", keyboard: true };
+        $.ajax({
+            type: "GET",
+            url: deleteStudentURL,
+            contentType: "application/json; charset=utf-8",
+            data: { "studentID": id },
+            datatype: "json",
+            success: function (data) {
+                loadStudents();
+            },
+            error: function () {
+                alert("Error loading student data");
+                loadStudents();
+            }
+        });
+    });
+});
+
+
+/**/</script>
+
+
+
+<table class="w3-table w3-striped w3-white w3-hoverable sortable">
+    <tr class="studentTableHeader">
+        <th></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Grade</th>
+        <th>Edit</th>
+        <th>Remove</th>
+    </tr>
+    @{
+        foreach (Student s in Model.Students)
+        {
+            <tr>
+                <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+                <td onclick="location.href = '@(Url.Action("StudentViewer", "Student", new { StudentID = s.StudentID }))'">@s.FirstName </td>
+                <td onclick="location.href = '@(Url.Action("StudentViewer", "Student", new { StudentID = s.StudentID }))'">@s.LastName</td>
+                <td>@s.GradeLevel </td>
+                <td><a href="javascript:void(0);" data-id="{@s.StudentID}" class="btn btn-danger editStudent"><i class="fas fa-pencil-alt"></i></a></td>
+                <td><a href="javascript:void(0);" data-id="{@s.StudentID}" class="btn btn-danger deactivateStudent"><i class="fas fa-user-times"></i></a></td>
+                <!--<td><button class="btn btn-danger" onclick="location.href = '@(Url.Action("DeactivateStudent", "User", new { StudentID = s.StudentID }))'"><i class="fas fa-user-times"></i></button> </td>-->
+            </tr>
+            }
+            }
+        </table>
+        <div class="panel-footer">
+            <div class="input-group">
+                <button class="btn btn-primary bootStrapButtons buttonAnimation" id="btnAddStudent" onclick="AddStudent()"><span>Add Student</span></button>
+            </div>
+        </div>
+

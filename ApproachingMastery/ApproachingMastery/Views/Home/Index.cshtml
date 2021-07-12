@@ -1,0 +1,236 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/NoUser.cshtml";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="~/Content/styles.css" />
+<script type="text/javascript">
+
+    function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+    }
+
+
+    // Toggle between showing and hiding the sidebar when clicking the menu icon
+    var mySidebar = document.getElementById("mySidebar");
+
+    function w3_open() {
+        if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+        } else {
+            mySidebar.style.display = 'block';
+        }
+    }
+
+    // Close the sidebar with the close button
+    function w3_close() {
+        mySidebar.style.display = "none";
+    }
+
+
+</script>
+<body>
+
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-card" id="myNavbar">
+            <a href="#home" class="w3-bar-item w3-button w3-wide">Approaching Mastery</a>
+            <!-- Right-sided navbar links -->
+            <div class="w3-right w3-hide-small">
+                <a href="#contact" class="w3-bar-item w3-button"><i class="fas fa-envelope"></i> Contact</a>
+                <a id="loginButton" class="w3-bar-item w3-button" onclick="document.getElementById('loginModal').style.display='block'"><i class="fas fa-sign-in-alt"></i> Log in</a>
+            </div>
+            <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Sidebar on small screens when clicking the menu icon -->
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+        <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+    </nav>
+
+    <!-- Header with full-height image -->
+    <header class="backgroundImage1 w3-display-container w3-grayscale-min" id="home">
+
+        <div class="w3-display-left w3-text-white" style="padding:48px">
+            <span class="w3-jumbo w3-hide-small">Start something that matters</span><br>
+            <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br>
+            <span class="w3-large">Create a free account today!</span>
+            <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn more here</a></p>
+        </div>
+
+    </header>
+
+    <!-- About Section -->
+    <div class="w3-container" style="padding:128px 16px" id="about">
+        <h3 class="w3-center">THE APPROACHING MASTERY PLATFORM</h3>
+        <p class="w3-center w3-large">Key features to note</p>
+        <div class="w3-row-padding w3-center" style="margin-top:64px">
+            <div class="w3-quarter">
+                <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+                <p class="w3-large">Management</p>
+                <p>
+                    Approaching Mastery is a next-generation platform that allows for cutting-edge data analytics.
+                    Allowing you to observe your students progress closer than before.
+                </p>
+            </div>
+            <div class="w3-quarter">
+                <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+                <p class="w3-large">Passion</p>
+                <p>
+                    Made from the ground up with teachers in mind, we help keep your assignments organized. So you can spend less time
+                    focusing on paperwork and more time doing what you love.
+                </p>
+            </div>
+            <div class="w3-quarter">
+                <i class="far fa-gem w3-margin-bottom w3-jumbo"></i>
+                <p class="w3-large">Design</p>
+                <p>
+                    We know each student is different and learns at their own pace.
+                    Thats why our easy to visualize monitoring tools help make sure no student gets left behind.
+                </p>
+            </div>
+            <div class="w3-quarter">
+                <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+                <p class="w3-large">Support</p>
+                <p>
+                    With easy to create categories and a variety of assignment upload types,
+                    we support any type of lesson plan or teaching style.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREENSHOT Section -->
+    <div class="w3-container w3-center w3-grey" style="padding:128px 16px" id="pricing">
+
+        <h3 style="font-size: 2.3rem;">Easy-To-Use Interface</h3>
+        <div class="w3-row-padding" style="margin-top:64px">
+            <div class="w3-twothird w3-section">
+
+                <img src="../Images/DashboardPic.PNG" class="dashboardPic">
+
+            </div>
+
+            <div class="w3-third w3-section">
+
+                <p style="font-size: 1.3em;">
+                    Interactive Dashboard allowing for a variety of different views. Approaching Mastery is a next-generation platform that allows for cutting-edge data analytics.
+                    Allowing you to observe your students progress closer than before.
+                </p>
+
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin-top:64px">
+            <div class="w3-third w3-section">
+                <p style="font-size: 1.3em;">
+                    We know each student is different and learns at their own pace.
+                    Thats why our easy to visualize monitoring tools help make sure no student gets left behind.
+                </p>
+            </div>
+
+            <div class="w3-twothird w3-section">
+                <img src="../Images/studentDashboard.PNG" class="dashboardPic">
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="w3-container w3-light-grey" id="contact">
+
+        <!--main-section team-start-->
+        <section class="main-section team" id="team">
+
+            <div class="container">
+
+                <h2>Our Team</h2>
+                <h6>Hover over a member to see contact information</h6>
+
+                <div class="team-leader-block clearfix">
+                    <div class="team-leader-box">
+                        <div class="team-leader wow fadeInDown delay-06s">
+                            <div class="team-leader-shadow"><a href="#"></a></div>
+                            <img src="~/Images/Ben_Pic.png" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/benjamin-capuana-16b2835b/" class="fab fa-linkedin"></a></li>
+                                <li><a href="mailto:bcapuana@approaching-mastery.com" class="far fa-envelope"></a></li>
+                            </ul>
+                        </div>
+                        <h3 class="wow fadeInDown delay-06s">Benjamin Capuana</h3>
+                        <span class="wow fadeInDown delay-09s">Project Manager, Database Architect</span>
+
+                    </div>
+
+                    <div class="team-leader-box">
+                        <div class="team-leader  wow fadeInDown delay-06s">
+                            <div class="team-leader-shadow"><a href="#"></a></div>
+                            <img src="~/Images/Shane_Pic.png" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/shane-spring-a890a051/" class="fab fa-linkedin"></a></li>
+                                <li><a href="mailto:saspring@cincinnatistate.edu" class="far fa-envelope"></a></li>
+                            </ul>
+                        </div>
+                        <h3 class="wow fadeInDown delay-06s">Shane Spring</h3>
+                        <span class="wow fadeInDown delay-09s">Design, Front-End Developer</span>
+
+                    </div>
+
+                    <div class="team-leader-box">
+                        <div class="team-leader wow fadeInDown delay-06s">
+                            <div class="team-leader-shadow"><a href="#"></a></div>
+                            <img src="~/Images/Jake_Pic.png" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/jakeoakley1/" class="fab fa-linkedin"></a></li>
+                                <li><a href="mailto:jakeoakley@protonmail.com" class="far fa-envelope"></a></li>
+                            </ul>
+                        </div>
+                        <h3 class="wow fadeInDown delay-06s">Jake Oakley</h3>
+                        <span class="wow fadeInDown delay-09s">Developer</span>
+
+                    </div>
+
+
+                    <div class="team-leader-box">
+                        <div class="team-leader  wow fadeInDown delay-06s">
+                            <div class="team-leader-shadow"><a href="#"></a></div>
+                            <img src="~/Images/Josh_Pic.PNG" alt="">
+                            <ul>
+                                <li><a href="#" class="fab fa-linkedin"></a></li>
+                                <li><a href="#" class="far fa-envelope"></a></li>
+                            </ul>
+                        </div>
+                        <h3 class="wow fadeInDown delay-06s">Josh Lucas</h3>
+                        <span class="wow fadeInDown delay-09s">Developer</span>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    </body>
+
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-64">
+        <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+
+        <p style="color:white;">&copy; Approaching-Mastery</p>
+
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        @{ Html.RenderAction("UserLogin", "UserLogin");}
+    </div>

@@ -1,0 +1,85 @@
+﻿@using DatabaseInteraction.Models
+@using ApproachingMastery.Models
+@using System.Linq
+@model List<TestYearModal>
+
+
+@{
+
+    Layout = null;
+}
+
+<script>
+    $(function () {
+        $(".editTenMark").click(function () {
+            loadEditModal($(this), editTenMarkURL, $("#AddEditTestContent"), $("#AddEditTestModal"), "year")
+        });
+    });
+
+    function AddTenMarkTest() {
+        loadEditModal($(this), addTenMarkURL, $("#AddEditTestContent"), $("#AddEditTestModal"), "")
+    }
+
+
+</script>
+
+<table id="TenMark" class="TableFormat">
+    <tr>
+        <th>Year</th>
+        <th>Fall</th>
+        <th>Winter</th>
+        <th>Spring</th>
+        <th>Edit</th>
+    </tr>
+
+
+    <!-- Need to dynamically populate these / placeholder -->
+    @{
+        if (Model.Count == 0)
+        {
+            <tr>
+                <td>No Data!</td>
+            </tr>
+        }
+        else
+        {
+            foreach (TestYearModal t in Model)
+            {
+                <tr>
+                    <td>@t.Year</td>
+                    @if (t.Fall.TestID == Guid.Empty)
+                    {
+                        <td>No Data!</td>
+                    }
+                    else
+                    {
+                        <td>@t.Fall.Score</td>
+                    }
+                    @if (t.Winter.TestID == Guid.Empty)
+                    {
+                        <td>No Data!</td>
+                    }
+                    else
+                    {
+                        <td>@t.Winter.Score</td>
+                    }
+                    @if (t.Spring.TestID == Guid.Empty)
+                    {
+                        <td>No Data!</td>
+                    }
+                    else
+                    {
+                        <td>@t.Spring.Score</td>
+                    }
+                    <td>
+                        <a href="javascript:void(0);" data-id="@t.Year" class="btn btn-danger editTenMark">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+    }
+
+</table>
+<button class="btn btn-primary bootStrapButtons buttonAnimation addTestingDataButton" onclick="AddTenMarkTest()" style="        width: 190px !important"><span><i class="fa fa-plus"></i> Add Test Scores</span></button>

@@ -1,0 +1,24 @@
+﻿@model  DatabaseInteraction.Models.Goal
+@{
+    Layout = "";
+}
+
+<script>
+    function academicGoalAdded(data) {
+        if (data.Success) {
+            $("#AddEditGoalModal").modal('hide');
+        }
+        alert(data.Message);
+        loadAcademicGoals();
+    }
+</script>
+
+<div class="modal-content animate">
+
+    @using (Ajax.BeginForm("AddAcademicGoal", "Student", new AjaxOptions { HttpMethod = "POST", OnSuccess = "academicGoalAdded" }))
+    {
+        @Html.EditorFor(m => m)
+    }
+
+</div>
+

@@ -1,0 +1,32 @@
+﻿@model  DatabaseInteraction.Models.ABCEntry
+@{
+    Layout = "";
+}
+
+<script>
+
+    function abcEntryEdited(data) {
+        alert(data.Message)
+        if (data.Success) {
+            loadABCChart();
+            $('#abcChartModal').modal("hide");
+        }
+    }
+</script>
+@using (Ajax.BeginForm("EditABCEntry", "Student", new AjaxOptions { HttpMethod = "POST", OnSuccess = "abcEntryEdited" }))
+{
+    <div class="modal-content animate">
+        <div class="modal-header">
+            <!-- Dynamically insert students name -->
+            <h4 class="modal-title">Add Behavior Incident</h4>
+        </div>
+        <!-- Main Content -->
+        @Html.EditorFor(m => m)
+    </div>
+}
+
+<script>
+    $(function () {
+        $('#incidentDate').datetimepicker();
+    });
+</script>

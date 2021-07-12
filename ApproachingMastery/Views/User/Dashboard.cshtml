@@ -1,0 +1,145 @@
+﻿@using DatabaseInteraction.Models
+@model UserLogin
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Dashboard</h1>
+        </div>
+    </div><!--/.row-->
+
+    <div class="panel panel-container">
+        <div class="row">
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-teal panel-widget border-right">
+                    <div class="row no-padding">
+                        <em class="fas fa-chalkboard-teacher fa-2x color-blue "></em>
+                        <!-- COUNT(intTeacherID) -->
+                        <div class="large">4</div>
+                        <div class="text-muted">Teachers</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-blue panel-widget border-right">
+                    <div class="row no-padding">
+                        <em class="fas fa-user-graduate fa-2x color-red"></em>
+                        <!-- COUNT(intStudentID)-->
+                        <div class="large">35</div>
+                        <div class="text-muted">Students</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-orange panel-widget border-right">
+                    <div class="row no-padding">
+                        <em class="fas fa-tasks fa-2x color-green"></em>
+                        <!-- COUNT(Goals)Where blnComplete = true(1)-->
+                        <div class="large">67</div>
+                        <div class="text-muted">Goals Met</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-red panel-widget ">
+                    <div class="row no-padding">
+                        <em class="fas fa-edit fa-2x color-orange"></em>
+
+                        <div class="large">125</div>
+                        <div class="text-muted">Goals Pending</div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.row-->
+    </div>
+
+    <!-- END TOP TABS -->
+    <!-- START STUDENT TABLE -->
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Students
+                  
+            <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+        </div>
+
+        <div class="panel-body">
+
+            @{ Html.RenderAction("GetStudents", "User");}
+
+
+            <div class="panel-footer">
+                <div class="input-group">
+
+                    <button class="btn btn-primary bootStrapButtons buttonAnimation" id="btnAddStudent" onclick="document.getElementById('addStudentModal').style.display = 'block'"><span>Add Student</span></button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END STUDENT TABLE -->
+
+    <!-- START OTHER TEACHERS-->
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Other Teachers
+
+            <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+        </div>
+        <div class="panel-body">
+
+            <div class="w3-container">
+
+                @{ Html.RenderAction("GetTeachers", "User");}
+
+            </div>
+
+            <div class="panel-footer">
+                <div class="input-group">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END OTHER TEACHERS-->
+
+</div>
+
+<script src="~/js/jquery-1.11.1.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/js/bootstrap-datepicker.js"></script>
+<script src="~/js/custom.js"></script>
+<script>
+		window.onload = function () {
+	var chart1 = document.getElementById("line-chart").getContext("2d");
+	window.myLine = new Chart(chart1).Line(lineChartData, {
+	responsive: true,
+	scaleLineColor: "rgba(0,0,0,.2)",
+	scaleGridLineColor: "rgba(0,0,0,.05)",
+	scaleFontColor: "#c5c7cc"
+	});
+};
+</script>
+
+<div id="addStudentModal" class="modal">
+
+    @{Html.RenderAction("AddStudent", "Student");}
+
+</div>
+
+
+
+    </html>

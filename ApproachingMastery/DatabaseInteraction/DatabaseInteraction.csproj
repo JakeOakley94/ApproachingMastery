@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F381CD70-A422-4167-9917-362AE96E9E2D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DatabaseInteraction</RootNamespace>
+    <AssemblyName>DatabaseInteraction</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Database.cs" />
+    <Compile Include="Database.goals.cs" />
+    <Compile Include="Database.Student.cs">
+      <DependentUpon>Database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Database.Tests.cs" />
+    <Compile Include="Database.User.cs" />
+    <Compile Include="Database.UserLogin.cs">
+      <DependentUpon>Database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Emailer.cs" />
+    <Compile Include="Models\Accomodation.cs" />
+    <Compile Include="Models\AccomodationDetail.cs" />
+    <Compile Include="Models\AccomodationTest.cs" />
+    <Compile Include="Models\Assignment.cs" />
+    <Compile Include="Models\ABCEntry.cs" />
+    <Compile Include="Models\AirTest.cs" />
+    <Compile Include="Models\BehaviorObjective.cs" />
+    <Compile Include="Models\Goal.cs" />
+    <Compile Include="Models\Message.Constants.cs">
+      <DependentUpon>Message.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\School.cs" />
+    <Compile Include="Models\SchoolDistrict.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Test.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserLogin.Constants.cs">
+      <DependentUpon>UserLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\DBSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>DBSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationAttributes\HasNumberAttribute.cs" />
+    <Compile Include="ValidationAttributes\HasSpecialCharacterAttribute.cs" />
+    <Compile Include="ValidationAttributes\HasUpperCaseAttribute.cs" />
+    <Compile Include="ValidationAttributes\IsNotOnlyWhiteSpaceAttribute.cs" />
+    <Compile Include="ValidationAttributes\NewEmailAddressAttribute.cs" />
+    <Compile Include="ValidationAttributes\OnlyLettersAttribute.cs" />
+    <Compile Include="ValidationAttributes\StartsWithCharacterAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="obj\Debug\DatabaseInteraction.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="Properties\DBSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>DBSettings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="obj\Debug\DatabaseInteraction.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\DatabaseInteraction.dll" />
+    <Content Include="obj\Debug\DatabaseInteraction.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

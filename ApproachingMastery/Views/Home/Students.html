@@ -1,0 +1,545 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+    <style>
+        html, body, h1, h2, h3, h4, h5 {
+            font-family: "Raleway", sans-serif;
+        }
+
+        .pointerCursor {
+            cursor: pointer;
+        }
+
+
+        /********* Style the tab **********/
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border-top: none;
+        }
+        /******** END TAB STYLE *************/
+
+        /******** TableFormat Style *************/
+        .TableFormat {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 90%;
+        }
+
+            .TableFormat td, .TableFormat th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .TableFormat tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .TableFormat th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+
+
+        /*Changing background colors of different tables*/
+        #proCore th {
+            background-color: cadetblue !important;
+        }
+
+        #proCore th {
+            background-color: rebeccapurple !important;
+        }
+
+        #SRI th {
+            background-color: darkred !important;
+        }
+
+        #TenMark th {
+            background-color: darkslategrey !important;
+        }
+
+        /******** END TableFormat Style *************/
+        .DateAlign {
+            border-style: groove;
+            width: 120px;
+        }
+
+        .boldText {
+            font-weight: bold;
+        }
+
+        .addTestingDataButton {
+            margin-top: 5px;
+        }
+
+        .abcChart, topLine {
+            border-top-color: teal;
+            border-top-style: dotted;
+        }
+    </style>
+    <script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+  }
+
+//Function for Tabs ******
+function openTab(evt, cityName) {
+var i, tabcontent, tablinks;
+tabcontent = document.getElementsByClassName("tabcontent");
+for (i = 0; i < tabcontent.length; i++) {
+tabcontent[i].style.display = "none";
+}
+tablinks = document.getElementsByClassName("tablinks");
+for (i = 0; i < tablinks.length; i++) {
+tablinks[i].className = tablinks[i].className.replace(" active", "");
+}
+document.getElementById(cityName).style.display = "block";
+evt.currentTarget.className += " active";
+
+// End Function for Tabs ******
+}
+    </script>
+</head>
+<body class="w3-light-grey">
+
+    <!-- Top container -->
+    <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+        <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+        <span class="w3-bar-item w3-right">Logo</span>
+    </div>
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+        <br>
+        <div class="w3-container w3-row">
+            <div class="w3-col s4">
+                <!-- Need function here to display Users Avatar -->
+                <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+            </div>
+
+            <div class="w3-col s8 w3-bar">
+
+                <!-- Need function here to display Users Name -->
+                <span>Welcome, <strong>Mike</strong></span><br>
+                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+            </div>
+        </div>
+        <hr>
+        <div class="w3-container">
+            <h5>Dashboard</h5>
+        </div>
+        <div class="w3-bar-block">
+            <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>  Students</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book-open fa-fw"></i>  Assignment</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user-friends fa-fw"></i>  Other Teachers</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
+        </div>
+    </nav>
+
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+        <!-- Place content here that you want above Tab selection -->
+        <div class="StudentName w3-container" style="padding-top:22px">
+            <!-- Dynamically display students avatar -->
+            <!-- Dynamically display students Name -->
+            <h3>Student: <span class="boldText">Little Billy</span></h3>
+        </div>
+
+
+        <!-- Tabs -->
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'Information')">Information</button>
+            <button class="tablinks" onclick="openTab(event, 'Accommodations')">Accommodations</button>
+            <!-- Trying to add dropdown links
+            <div class="dropdown">
+              <button class="tablinks">Academic
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <button class="tablinks dropdownLinks" onclick="openTab(event, 'Academic')">Reading</button>
+                <button class="tablinks dropdownLinks" onclick="openTab(event, 'Academic')">Writing</button>
+                <button class="tablinks dropdownLinks" onclick="openTab(event, 'Academic')">Math</button>
+              </div>
+            </div>
+            -->
+            <button class="tablinks" onclick="openTab(event, 'Academic')">Academic</button>
+            <button class="tablinks" onclick="openTab(event, 'Behavior')">Behavior</button>
+        </div>
+
+        <!-- First Tab / Information -->
+        <div id="Information" class="tabcontent">
+            <!-- First Row -->
+            <!-- Last Year AIR Test -->
+            <div class="w3-half">
+                <h4 class="boldText">Last Year: Air Test</h4>
+                <table id="airTest" class="TableFormat">
+                    <tr>
+                        <th>Math</th>
+                        <th>Reading</th>
+                    </tr>
+                    <tr>
+                        <!-- Need to dynamically populate these / placeholder -->
+                        <td>73%</td>
+                        <td>72%</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- IEP due date -->
+            <div class="w3-half">
+                <div>
+                    <h4 class="boldText">*IEP Due Date</h4>
+                    <!-- Need to dynamically populate these / placeholder -->
+                    <p class="DateAlign">3-20-2019</p>
+                </div>
+                <div>
+                    <h4 class="boldText">*ETR Due Date</h4>
+                    <!-- Need to dynamically populate these / placeholder -->
+                    <p class="DateAlign">4-20-2020</p>
+                </div>
+            </div>
+
+            <!-- Second Row -->
+            <!-- PRo-Core Reading -->
+            <div class="w3-half">
+                <h4 class="boldText">Pro-Core Reading</h4>
+                <table id="proCore" class="TableFormat">
+                    <tr>
+                        <th>Fall</th>
+                        <th>Winter</th>
+                        <th>Spring</th>
+                    </tr>
+                    <tr>
+                        <!-- Need to dynamically populate these / placeholder -->
+                        <td>11%</td>
+                        <td>45%</td>
+                        <td>100%</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="w3-half">
+                <!-- SRI -->
+                <h4 class="boldText">SRI</h4>
+                <table id="SRI" class="TableFormat">
+                    <tr>
+                        <th>Fall</th>
+                        <th>Winter</th>
+                        <th>Spring</th>
+                    </tr>
+                    <tr>
+                        <!-- Need to dynamically populate these / placeholder -->
+                        <td>25%</td>
+                        <td>65%</td>
+                        <td>100%</td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <!-- Third Row -->
+            <!-- TenMark-Math -->
+            <div class="w3-half">
+                <h4 class="boldText">TenMark-Math</h4>
+                <table id="TenMark" class="TableFormat">
+                    <tr>
+                        <th>Fall</th>
+                        <th>Winter</th>
+                        <th>Spring</th>
+                    </tr>
+                    <tr>
+                        <!-- Need to dynamically populate these / placeholder -->
+                        <td>23.5%</td>
+                        <td>25.2%</td>
+                        <td>99.99%</td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+        </div>
+
+        <!-- Second Tab / Accommodations -->
+        <div id="Accommodations" class="tabcontent">
+            <!-- List of Accommodations -->
+
+            <div class="topBar" style="height: 50px;">
+                <h3 class="w3-threequarter boldText">CLASSROOM</h3>
+                <button class="" style="float: right;"><i class="fa fa-plus"></i> Edit Accommodations</button>
+
+            </div>
+            <ul class="listedAccomodations">
+                <!-- These will need to be dynamically populated -->
+                <li>Read Aloud</li>
+                <li>Scibe</li>
+                <li>Math Tools</li>
+                <li>Extended Time: <span id="etTime" class="boldText"> 10min   </span></li>
+            </ul>
+
+            <hr>
+            <!-- Testing Accommodation data / need to dynamically populate for what accomadations they have-->
+            <div class="secondRow abcChart">
+                <!-- Reading -->
+                <div class="w3-half">
+                    <h4 class="boldText">Reading</h4>
+                    <table id="readingTable" class="TableFormat">
+                        <tr>
+                            <th>Date</th>
+                            <th>Test Given</th>
+                            <th>Precentile</th>
+                        </tr>
+                        <tr>
+                            <!-- Need to dynamically populate these / placeholder -->
+                            <td>03/03/2019</td>
+                            <td>Had him read a passage out loud</td>
+                            <td>90th</td>
+                        </tr>
+                    </table>
+                    <button class="addTestingDataButton"><i class="fa fa-plus"></i> Add Test</button>
+                </div>
+                <!-- Writing -->
+                <div class="w3-half">
+                    <h4 class="boldText">Writing</h4>
+                    <table id="writingTable" class="TableFormat">
+                        <tr>
+                            <th>Date</th>
+                            <th>Test Given</th>
+                            <th>Precentile</th>
+                        </tr>
+                        <tr>
+                            <!-- Need to dynamically populate these / placeholder -->
+                            <td>03/03/2019</td>
+                            <td>Had him read a passage out loud</td>
+                            <td>90th</td>
+                        </tr>
+                    </table>
+                    <button class="addTestingDataButton"><i class="fa fa-plus"></i> Add Test</button>
+                </div>
+                <!-- Math -->
+                <div class="w3-half">
+                    <h4 class="boldText">Math</h4>
+                    <table id="mathTable" class="TableFormat">
+                        <tr>
+                            <th>Date</th>
+                            <th>Test Given</th>
+                            <th>Precentile</th>
+                        </tr>
+                        <tr>
+                            <!-- Need to dynamically populate these / placeholder -->
+                            <td>03/03/2019</td>
+                            <td>Had him read a passage out loud</td>
+                            <td>90th</td>
+                        </tr>
+                    </table>
+                    <button class="addTestingDataButton"><i class="fa fa-plus"></i> Add Test</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Tab / Academic -->
+        <div id="Academic" class="tabcontent">
+            <!-- Every Subject will have both a Goal and an Objective, which will each have their own assigments -->
+            <!-- Reading Goal -->
+
+            <h3 class="boldText"><u>Reading</u></h3>
+
+            <!--Goal Section -->
+            <div class="goalSection">
+                <h5 class="boldText">Goal: <span>Answers 10 comprehension questions in 3 out of 4 trials</span></h5>
+                <table id="readingGoal" class="TableFormat">
+                    <tr>
+                        <th>Date</th>
+                        <th>Assignment</th>
+                        <th>Score</th>
+                        <th>Image</th>
+                    </tr>
+                    <tr>
+                        <!-- Need to dynamically populate these / placeholder -->
+                        <td>01/03/2019</td>
+                        <td>
+                            When given a third grade reading passage read aloud, The student will identify the main
+                            idea of the passage with at least 3 supporting details in 4 out of 5 trials with 80% accuracy
+                        </td>
+                        <td>90%</td>
+                        <td>"Picture Here"</td>
+                    </tr>
+                </table>
+                <button class="addTestingDataButton"><i class="fa fa-plus"></i> Add Assignment</button>
+            </div>
+            <!-- Objective section -->
+            <div class="Objective">
+                <h5 class="boldText">Objective: <span>Answers 10 inferential questions(Reading inbetween the lines)</span></h5>
+                <table id="readingObjective" class="TableFormat">
+                    <tr>
+                        <th>Date</th>
+                        <th>Assignment</th>
+                        <th>Score</th>
+                        <th>Image</th>
+                    </tr>
+                    <tr>
+                        <!-- Need to dynamically populate these / placeholder -->
+                        <td>02/10/2019</td>
+                        <td>Answering how and why questions</td>
+                        <td>50%</td>
+                        <td>"Picture Here"</td>
+                    </tr>
+                </table>
+                <button class="addTestingDataButton"><i class="fa fa-plus"></i> Add Assignment</button>
+            </div>
+
+
+        </div>
+
+        <!-- Fourth Tab / Behavior-->
+        <div id="Behavior" class="tabcontent">
+            <!-- We need 2 sections, First we need to do behavior tracking. -->
+            <!-- 2nd we do ABC Chart "Cause and effect of bahavior" -->
+            <!-- 1st section will be divided into Goals and Objectives like 3rd Tab -->
+            <!-- There can be more then one per student -->
+            <h3 class="boldText"><u>Behavior Tracking</u></h3>
+            <div class="" style="margin-bottom: 20px;">
+                <!--Behavior tracking Section -->
+                <div class="trackingSection">
+                    <h5 class="boldText">Goal: <span>"Placeholder behavior Goal"</span></h5>
+                    <table class="TableFormat">
+                        <tr>
+                            <th>Date</th>
+                            <th>Assignment</th>
+                            <th>Score</th>
+                            <th>Image</th>
+                        </tr>
+                        <tr>
+                            <!-- Need to dynamically populate these / placeholder -->
+                            <td>01/03/2019</td>
+                            <td>
+                                When given a third grade reading passage read aloud, The student will identify the main
+                                idea of the passage with at least 3 supporting details in 4 out of 5 trials with 80% accuracy
+                            </td>
+                            <td>90%</td>
+                            <td>"Picture Here"</td>
+                        </tr>
+                    </table>
+                    <button class="addTestingDataButton"><i class="fa fa-plus"></i> Add Assignment</button>
+                </div>
+                <!-- Objective section -->
+                <div class="Objective">
+                    <h5 class="boldText">Objective: <span>"Placeholder behavior Objective"</span></h5>
+                    <table class="TableFormat">
+                        <tr>
+                            <th>Date</th>
+                            <th>Assignment</th>
+                            <th>Score</th>
+                            <th>Image</th>
+                        </tr>
+                        <tr>
+                            <!-- Need to dynamically populate these / placeholder -->
+                            <td>02/10/2019</td>
+                            <td>Answering how and why questions</td>
+                            <td>50%</td>
+                            <td>"Picture Here"</td>
+                        </tr>
+                    </table>
+                    <button class="addTestingDataButton"><i class="fa fa-plus"></i> Add Assignment</button>
+                </div>
+            </div>
+            <!-- 2nd Section ABC Chart, There will only be one per student-->
+            <div class="abcChart">
+                <h3 class="boldText"><u>ABC Chart</u></h3>
+                <table class="TableFormat">
+                    <tr>
+                        <th>Date</th>
+                        <th>Antecedent</th>
+                        <th>Behavior</th>
+                        <th>Consequence</th>
+                    </tr>
+                    <tr>
+                        <!-- Need to dynamically populate these / placeholder -->
+                        <td>09/10/2018</td>
+                        <td>What happened before the behavior</td>
+                        <td>What was the behavior</td>
+                        <td>What was said or done after behavior</td>
+                    </tr>
+                </table>
+                <button class="addTestingDataButton"><i class="fa fa-plus"></i> Add Behavior incident</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="w3-center w3-container w3-padding-16 w3-light-grey">
+            <p>Powered by <span style="text-decoration: underline;">The 404 Group</span></p>
+        </footer>
+
+        <!-- End page content -->
+    </div>
+
+
+</body>
+</html>

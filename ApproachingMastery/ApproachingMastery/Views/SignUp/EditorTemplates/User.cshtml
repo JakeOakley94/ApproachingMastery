@@ -1,0 +1,45 @@
+﻿@model DatabaseInteraction.Models.User
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/approaching-mastery_forms.css" />
+
+@Html.AntiForgeryToken()
+@Html.HiddenFor(m => m.IsEditing)
+<div class="inputBox">
+    <!-- First Name-->
+    @Html.LabelFor(m => m.FirstName)*
+    @Html.TextBoxFor(m => m.FirstName, new { @id = "firstName" })
+    <div>@Html.ValidationMessageFor(m => m.FirstName)</div>
+</div>
+<div class="inputBox">
+    <!-- Middle Name-->
+    @Html.LabelFor(m => m.MiddleName)
+    @Html.TextBoxFor(m => m.MiddleName)
+    <div>@Html.ValidationMessageFor(m => m.MiddleName)</div>
+</div>
+<div class="inputBox">
+    <!-- Last Name -->
+    @Html.LabelFor(m => m.LastName)*
+    @Html.TextBoxFor(m => m.LastName, new { @id = "lastName" })
+    <div>@Html.ValidationMessageFor(m => m.LastName)</div>
+</div>
+<div class="inputBox">
+    <!-- Phone Number -->
+    @Html.LabelFor(m => m.PhoneNumber)*
+    @Html.TextBoxFor(m => m.PhoneNumber, new { @id = "phoneNumber" })
+    <div>@Html.ValidationMessageFor(m => m.PhoneNumber)</div>
+</div>
+<div class="inputBox">
+    @Html.LabelFor(m => m.Class)
+    @Html.TextBoxFor(m => m.Class)
+</div>
+@{ if (Model.IsEditing)
+    {
+        <div style="text-align:right;">
+            <button>Save Changes</button>
+        </div>
+    }
+}

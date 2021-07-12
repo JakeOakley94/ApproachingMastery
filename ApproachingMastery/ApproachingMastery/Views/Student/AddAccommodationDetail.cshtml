@@ -1,0 +1,28 @@
+﻿@model  DatabaseInteraction.Models.AccomodationDetail
+@{
+    Layout = "";
+}
+
+<script>
+    function accommodationDetailAdded(data) {
+        if (data.Success) {
+            $("#AddEditGoalModal").modal('hide');
+        }
+        alert(data.Message);
+        loadAccomodationsList();
+    }
+</script>
+
+<div class="modal-content animate">
+    <div class="modal-header">
+        <!-- Dynamically insert students name -->
+        <h4 class="modal-title">Add new accommodation detail</h4>
+    </div>
+
+    @using (Ajax.BeginForm("AddAccommodationDetail", "Student", new AjaxOptions { HttpMethod = "POST", OnSuccess = "accommodationDetailAdded" }))
+    {
+        @Html.EditorFor(m => m)
+    }
+
+</div>
+

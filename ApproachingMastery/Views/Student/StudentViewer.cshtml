@@ -1,0 +1,371 @@
+﻿@using DatabaseInteraction.Models
+@model Student
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<style>
+
+    .modal-backdrop.in {
+        z-index: auto;
+    }
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Scripts/StudentViewerAjax.js"></script>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Student:<span style="font-weight: bold; font-size: 1.3rem;"> @Model.FirstName, @Model.LastName</span>
+            
+        </div>
+
+        <div class="panel-body">
+
+
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#Information" data-toggle="tab">Information</a></li>
+                <li><a href="#Accomodations" data-toggle="tab" onclick="loadAccomodations()">Accommodations</a></li>
+                <li><a href="#Academics" data-toggle="tab" onclick="loadAcademicsTab()">Academics</a></li>
+                <li><a href="#Behavior" data-toggle="tab" onclick="loadBehaviorTab()">Behavior</a></li>
+                <li><a href="#Reports" data-toggle="tab">Reports</a></li>
+            </ul>
+
+            <link rel="stylesheet" type="text/css" href="~/Content/approaching-mastery_forms.css" />
+
+
+            <div class="tab-content">
+                <!--Information Tab-->
+                <div class="tab-pane fade in active" id="Information">
+
+                    <!-- left column -->
+                    <div class="w3-half" style="display:block;">
+                        <div>
+                            <h4 class="boldText">Air Tests</h4>
+                            <div style="text-align: center;" id="airTestsLoading" hidden="hidden">
+                                <i class='fa fa-circle-o-notch fa-spin fa-5x'></i><br />Loading Please Wait...
+                            </div>
+                            <!--Need another division to keep Pro-core table from shifting-->
+                            <div id="getAirTests">
+                                @* @{ Html.RenderAction("GetAirTest", "Student");}*@
+                            </div>
+                        </div>
+
+                        <div style="display:block;">
+                            <!-- SRI -->
+                            <h4 class="boldText">SRI</h4>
+                            <div style="text-align: center;" id="sriLoading" hidden="hidden">
+                                <i class='fa fa-circle-o-notch fa-spin fa-5x'></i><br />Loading Please Wait...
+                            </div>
+                            <div id="getSRI">
+                                @*  @{ Html.RenderAction("GetSRI", "Student");}*@
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="w3-half">
+                        <div style="margin:auto">
+                            <h4 class="boldText">Due Dates:</h4>
+                            @using (Html.BeginForm("UpdateDueDates", "Student", FormMethod.Post))
+                            {
+                                <table class="TableFormat">
+
+                                    <tr>
+                                        <th>
+                                            @Html.LabelFor(m => m.IEPDueDate)
+                                        </th>
+                                        <th>
+                                            @Html.LabelFor(m => m.ETRDueDate)
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.EditorFor(m => m.IEPDueDate)
+                                        </td>
+                                        <td>
+                                            @Html.EditorFor(m => m.ETRDueDate)
+                                        </td>
+                                    </tr>
+
+                                </table>
+                                <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+                            }
+                        </div>
+                        <!-- PRo-Core Reading -->
+                        <div>
+
+                            <h4 class="boldText">Pro-Core Reading</h4>
+                            <div style="text-align: center;" id="proCoreLoading" hidden="hidden">
+                                <i class='fa fa-circle-o-notch fa-spin fa-5x'></i><br />Loading Please Wait...
+                            </div>
+                            <div id="getProCore">
+                                @*  @{ Html.RenderAction("GetproCore", "Student");}*@
+                            </div>
+
+                        </div>
+
+                        <!-- Second Row -->
+                        <!-- Third Row -->
+                        <!-- TenMark-Math -->
+                        <div>
+
+                            <h4 class="boldText">Ten-Mark</h4>
+                            <div style="text-align: center;" id="tenMarkLoading" hidden="hidden">
+                                <i class='fa fa-circle-o-notch fa-spin fa-5x'></i><br />Loading Please Wait...
+                            </div>
+                            <div id="getTenMark">
+                                @*  @{ Html.RenderAction("GetproCore", "Student");}*@
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Accomodations Tab-->
+                <div class="tab-pane fade" id="Accomodations">
+
+                    <!-- List of Accommodations -->
+
+                    <div class="topBar" style="height: 50px;">
+                        <h3 class="w3-threequarter boldText">CLASSROOM</h3>
+                    </div>
+
+                    <div style="text-align: center;" id="AccomodationsListLoading" hidden="hidden">
+                        <i class='fa fa-circle-o-notch fa-spin fa-5x'></i><br />Loading Please Wait...
+                    </div>
+                    <div id="getAccomodationsList">
+
+                    </div>
+
+
+
+                    <hr>
+                    <!-- Testing Accommodation data / need to dynamically populate for what accomadations they have-->
+                    <!-- Reading Accomodation Test -->
+
+                    <div class="secondRow">
+
+                        <div class="w3-half">
+
+
+                            <div style="display:block;">
+                                <!---->
+
+
+                                <div style="text-align: center;" id="ReadingAccomodationTestsLoading" hidden="hidden">
+                                    <i class='fa fa-circle-o-notch fa-spin fa-5x'></i><br />Loading Please Wait...
+                                </div>
+                                <div id="getReadingAccomodationTests">
+                                    @*  @{ Html.RenderAction("GetReadingAccomodationTests", "Student");} *@
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- Writing -->
+                        <div class="w3-half">
+
+                            <div style="display:block;">
+                                <!---->
+
+
+                                <div style="text-align: center;" id="WritingAccomodationTestsLoading" hidden="hidden">
+                                    <i class='fa fa-circle-o-notch fa-spin fa-5x'></i><br />Loading Please Wait...
+                                </div>
+                                <div id="getWritingAccomodationTests">
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <!-- Math -->
+                        <div class="w3-half">
+
+                            <div style="display:block;">
+                                <!---->
+
+
+                                <div style="text-align: center;" id="MathAccomodationTestsLoading" hidden="hidden">
+                                    <i class='fa fa-circle-o-notch fa-spin fa-5x'></i><br />Loading Please Wait...
+                                </div>
+                                <div id="getMathAccomodationTests">
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <button class="btn btn-primary bootStrapButtons buttonAnimation addTestingDataButton" onclick="AddAccomodationTest()" style="width: 190px !important"><span><i class="fa fa-plus"></i> Add Test Scores</span></button>
+
+                </div>
+                <!--Academics Tab-->
+                <div class="tab-pane fade" id="Academics">
+                    <!--Button to add Goal-->
+                    <button class="btn btn-primary bootStrapButtons buttonAnimation" onclick="AddAcademicGoal();"><span><i class="fa fa-plus"></i> Add Academic Goal</span></button>
+                    <div id="AcademicGoalsViewer">
+                        <div style="text-align: center;" id="AcademicGoalsLoading" hidden="hidden">
+                            <i class='fa fa-circle-o-notch fa-spin fa-5x'></i><br />Loading Please Wait...
+                        </div>
+                        <div id="getAcademicGoals">
+                        </div>
+                    </div>
+                </div>
+                <!--Behavior Tab-->
+                <div class="tab-pane fade" id="Behavior">
+                    <!--Button to add Goal-->
+                    <button class="btn btn-primary bootStrapButtons buttonAnimation" onclick="AddBehaviorGoal();"><span><i class="fa fa-plus"></i> Add Behavior Goal</span></button>
+
+                    <div id="behaviorGoalsViewer">
+                        <div style="text-align: center;" id="behaviorGoalsLoading" hidden="hidden">
+                            <i class='fa fa-circle-o-notch fa-spin fa-5x'></i><br />Loading Please Wait...
+                        </div>
+                        <div id="getBehaviorGoals">
+                        </div>
+                    </div>
+
+                    @* @{ Html.RenderAction("GetBehaviorGoal", "Student");} *@
+
+
+                    <hr>
+                    <!-- 2nd Section ABC Chart, There will only be one per student-->
+                    <div class="">
+
+                        <h4 class="boldText">ABC Chart</h4>
+                        <div style="text-align: center;" id="abcChartLoading" hidden="hidden">
+                            <i class='fa fa-circle-o-notch fa-spin fa-5x'></i><br />Loading Please Wait...
+                        </div>
+                        <div id="getABCChart">
+                            @*  @{ Html.RenderAction("GetproCore", "Student");}*@
+                        </div>
+                    </div>
+                </div>
+                <!--Reports Tab-->
+                <div class="tab-pane fade" id="Reports">
+                    <!--Render our first Chart SRI-->
+                    @{ Html.RenderAction("DisplaySRIChart", "Student");}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modals Below--> <!-- IN ORDER OF TABS (TOP DOWN, LEFT RIGHT)-->
+<!-- AIR TEST MODALS -->
+
+<div id="addAirTestModal" class="modal">
+    <div class="modal-dialog" id="addAirTest">
+    </div>
+
+
+</div>
+
+<div id="EditAirTestModal" class="modal">
+    <div class="modal-dialog" id="editAirTestContent">
+    </div>
+</div>
+
+<div id="AddEditTestModal" class="modal">
+    <div class="modal-dialog" id="AddEditTestContent">
+    </div>
+</div>
+
+
+<!-- Benchmark Tests / proCore Modal -->
+<div id="BenchMarkTests" class="modal">
+
+    @{ Html.RenderAction("BenchMarkTests", "Student");}
+
+</div>
+
+<!-- Edit Accommodations Modal -->
+<div id="accommodationsListModal" class="modal">
+
+</div>
+
+<!-- Edit/Add Accommodation Tests Modal -->
+<div id="addAccomodationTest" class="modal">
+    <div class="modal-dialog" id="accomodationTestContent">
+    </div>
+
+
+</div>
+
+<div id="editAccomodationTest" class="modal">
+    <div class="modal-dialog" id="editAccomodationTest">
+    </div>
+</div>
+
+<div id="AddEditAccomodationTestModal" class="modal">
+    <div class="modal-dialog" id="AddEditAccomodationTest">
+    </div>
+</div>
+
+<!-- Goal Assignment Modal -->
+<div id="AssignmentModal" class="modal">
+    <div class="modal-dialog" id="AddEditGoalAssignment">
+
+    </div>
+
+</div>
+
+<!-- Add Goal Modal -->
+<div id="AddEditGoalModal" class="modal">
+    <div class="modal-dialog" id="AddEditGoal">
+    </div>
+</div>
+
+
+<!-- abc Chart Modal -->
+<div id="abcChartModal" class="modal">
+    <div class="modal-dialog" id="abcChartContent">
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    function getUrlVars() {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    };
+
+    $(document).ready(function () {
+        var urlVars = getUrlVars();
+        if (urlVars["Tab"] != null) {
+            var linkName = 'a[href="#' + urlVars["Tab"] + '"]';
+            var link = $(linkName);
+            if (link != null)
+                link.click();
+        }
+    });
+</script>
+
+
+

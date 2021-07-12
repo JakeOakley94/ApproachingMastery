@@ -1,0 +1,43 @@
+﻿@model  DatabaseInteraction.Models.Assignment
+@{
+    Layout = "";
+}
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="modal-content animate">
+        <div class="modal-header">
+            <!-- Dynamically insert students name -->
+            <h4 class="modal-title">Add Assignment for Goal</h4>
+        </div>
+        <!-- Main Content -->
+        <div class="container" style="width: 100%;">
+
+            <!-- !?!?!?!?!?!?!?!?!?!?!?!!?!?!?!?!?!!?!?!?!?!!?!? -->
+            <!-- Need to store Date but needs to be built out first -->
+            <!-- !?!?!?!?!?!?!?!?!?!?!?!!?!?!?!?!?!!?!?!?!?!!?!? -->
+            @Html.LabelFor(m => m.CompletedBy, "Date of Test")
+            @Html.TextBoxFor(m => m.CompletedBy, new { @type = "Date", @Value = DateTime.Now.ToShortDateString() })
+            <br />
+
+            <!-- Description -->
+            @Html.LabelFor(m => m.Details, "Description:")
+            @Html.TextAreaFor(m => m.Details)
+            <br />
+
+            <!-- Score -->
+            @Html.LabelFor(m => m.Score, "Score")
+            @Html.TextBoxFor(m => m.Score, new { @type = "number", @min = "0", @max = "100" })
+            <br />
+
+            <!-- File -->
+            @Html.LabelFor(m => m.Image, "Select File")
+            @Html.TextBoxFor(m => m.Image, new { @type = "File"})
+
+        </div>
+        <!-- Footer and buttons -->
+        <div class="container" style="background-color:#f1f1f1; width: 100%;">
+            <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+            <button type="button" onclick="document.getElementById('AssignmentModal').style.display = 'none'" class="cancelbtn btn btn-danger bootStrapButtons buttonAnimation"><span>Cancel</span></button>
+        </div>
+    </div>
+}

@@ -1,0 +1,24 @@
+﻿
+@model  ApproachingMastery.Models.AddEditStudentModal
+@{
+    Layout = "";
+}
+
+<script>
+    function studentAdded(data) {
+        alert(data.Message);
+        loadStudents();
+        $("#addStudentModal").modal("hide");
+    }
+</script>
+
+<div class="modal-content animate">
+
+    @using (Ajax.BeginForm("AddStudent", "Student", new AjaxOptions { HttpMethod = "POST", OnSuccess = "studentAdded" }))
+    {
+        @Html.AntiForgeryToken();
+        @Html.EditorFor(m => m);
+    }
+
+</div>
+

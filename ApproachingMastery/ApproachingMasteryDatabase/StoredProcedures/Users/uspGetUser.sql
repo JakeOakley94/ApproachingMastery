@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [dbo].[uspGetUser]
+	@guidLoginID UNIQUEIDENTIFIER
+AS
+	SELECT * FROM TUsers WHERE guidLoginID = @guidLoginID
+RETURN 0

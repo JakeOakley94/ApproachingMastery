@@ -1,0 +1,70 @@
+﻿@using DatabaseInteraction.Models
+@using System.Linq
+@model Student
+
+
+@{
+
+    Layout = null;
+}
+
+<h4 class="boldText">Reading Tests</h4>
+<table id="ReadingAccomodationTests" class="TableFormat">
+    <tr>
+
+        <th>Date</th>
+        <th>Test Given</th>
+        <th>Grade</th>
+        <th>Edit</th>
+        <th>Delete</th>
+
+    </tr>
+
+
+    <!-- Need to dynamically populate these / placeholder -->
+    @{
+
+        int Index = 0;
+
+
+        AccomodationTest.AccomodationTestType type = AccomodationTest.AccomodationTestType.Reading;
+
+
+
+        foreach (AccomodationTest at in Model.AccomodationTests)
+        {
+
+            <tr>
+
+                @{
+
+
+                    if (Model.AccomodationTests[Index].Type == type)
+                    {
+                        string formattedDate = Model.AccomodationTests[Index].Date.ToString("MM/dd/yyyy");
+
+                        <td> @formattedDate </td>
+
+                        <td> @Model.AccomodationTests[Index].TestGiven </td>
+
+                        <td> @Model.AccomodationTests[Index].Percentile </td>
+
+                    }
+
+
+                    <td><a href="javascript:void(0);" data-id="{@Model.AccomodationTests[Index].TestID}" class="btn btn-danger editMathTest"><i class="fas fa-pencil-alt"></i></a></td>
+                    <td><a href="javascript:void(0);" data-id="{@Model.AccomodationTests[Index].TestID}" class="btn btn-danger deleteMathTest"><i class="fas fa-trash-alt"></i></a></td>
+
+                    Index += 1;
+
+                }
+
+
+            </tr>
+
+        }
+
+    }
+
+</table>
+

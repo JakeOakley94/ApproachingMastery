@@ -1,0 +1,21 @@
+﻿@model DatabaseInteraction.Models.User
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .userInfoContainer {
+        width: 75%;
+        margin: auto;
+        margin-top: 50px;
+        border: 1px solid lightgrey;
+    }
+</style>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    @using (Html.BeginForm(FormMethod.Post))
+    {
+        Model.IsEditing = true;
+        @Html.EditorFor(m => m)
+    }
+</div>

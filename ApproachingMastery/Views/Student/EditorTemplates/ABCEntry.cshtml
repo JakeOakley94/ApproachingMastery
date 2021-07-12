@@ -1,0 +1,28 @@
+﻿@model  DatabaseInteraction.Models.ABCEntry
+@{
+    Layout = null;
+}
+
+<div class="container" style="width: 100%;">
+    @Html.HiddenFor(m => m.ABCID)
+    @Html.HiddenFor(m=>m.AddedBy)
+    @Html.LabelFor(m => m.IncidentDate)
+    @Html.TextBoxFor(m => m.IncidentDate, new { id = "incidentDate" })
+    <br />
+    @Html.LabelFor(m => m.Antecedent)
+    @Html.EditorFor(m => m.Antecedent)
+    <br />
+    @Html.LabelFor(m => m.Behavior)
+    @Html.EditorFor(m => m.Behavior)
+    <br />
+    @Html.LabelFor(m => m.Consequence)
+    @Html.EditorFor(m => m.Consequence)
+
+
+
+</div>
+<!-- Footer and buttons -->
+<div class="container" style="background-color:#f1f1f1; width: 100%;">
+    <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+    <button type="button" onclick="$('#abcChartModal').modal('hide');" class="cancelbtn btn btn-danger bootStrapButtons buttonAnimation"><span>Cancel</span></button>
+</div>

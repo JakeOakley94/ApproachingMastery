@@ -1,0 +1,2 @@
+C:\Users\jakeo\Source\Repos\capstone\ApproachingMastery\DatabaseInteraction\obj\Debug\DatabaseInteraction.csprojAssemblyReference.cache
+C:\Users\jakeo\Source\Repos\capstone\ApproachingMastery\DatabaseInteraction\obj\Debug\DatabaseInteraction.csproj.CoreCompileInputs.cache

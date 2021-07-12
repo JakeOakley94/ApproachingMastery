@@ -1,0 +1,92 @@
+﻿@using DatabaseInteraction.Models
+@using System.Linq
+@model Student
+
+
+
+@{
+    Layout = null;
+}
+
+
+
+<script type="text/javascript">
+
+    $(function () {
+        $(".editAirTest").click(function () {
+            loadEditModal($(this), editAirTestURL, $("#editAirTestContent"), $("#EditAirTestModal"), "airTestID");
+        });
+    });
+   
+    $(function () {
+        $(".deleteAirTest").click(function () {
+            if (!confirm("Are you sure you want to remove this air test? This action cannot be undone."))
+                return;
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            //var options = { "backdrop": "static", keyboard: true };
+            $.ajax({
+                type: "GET",
+                url: deleteAirTestURL,
+                contentType: "application/json; charset=utf-8",
+                data: { "airTestID": id },
+                datatype: "json",
+                success: function (data) {
+                    alert(data.Message);
+                    loadAirTests();
+                },
+                error: function () {
+                    alert("Error deleting air test");
+                    loadAirTests();
+                }
+            });
+        });
+    });
+
+</script>
+
+
+
+<table id="airTest" class="TableFormat">
+    <tr>
+        <th>Math</th>
+        <th>Reading</th>
+        <th>Year</th>
+        <th>Edit</th>
+        <th>Remove</th>
+    </tr>
+
+    <tr>
+        <!-- Need to dynamically populate these / placeholder -->
+        @{
+
+            int Index = 0;
+
+            foreach (AirTest at in Model.AirTests)
+            {
+                if (Model.AirTests != null && Model.AirTests.Count > 0)
+                {
+                <tr>
+                    <td> @Model.AirTests[Index].MathGrade </td>
+                    <td> @Model.AirTests[Index].ReadingGrade </td>
+                    <td> @Model.AirTests[Index].Year </td>
+                    <td><a href="javascript:void(0);" data-id="{@at.AirTestID}" class="btn btn-danger editAirTest"><i class="fas fa-pencil-alt"></i></a></td>
+                    <td><a href="javascript:void(0);" data-id="{@at.AirTestID}" class="btn btn-danger deleteAirTest"><i class="fas fa-trash-alt"></i></a></td>
+
+                </tr>
+
+                Index += 1;
+
+            }
+            else
+            {
+                <tr>
+                    <td style="{column-span: all; -webkit-column-count:all; -moz-column-count: all} ">No Data Exists!</td>
+                </tr>
+            }
+        }
+
+        }
+    </table>
+
+    <button class="btn btn-primary bootStrapButtons buttonAnimation addTestingDataButton" onclick="AddAirTest()" style="width: 190px !important"><span><i class="fa fa-plus"></i> Add Test Scores</span></button>

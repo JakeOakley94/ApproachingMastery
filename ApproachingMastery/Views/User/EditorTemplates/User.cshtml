@@ -1,0 +1,77 @@
+﻿@model DatabaseInteraction.Models.User
+
+@{
+    Layout = null;
+}
+
+<script>
+    function showUserInfo() {
+
+        var userInfo = $('#UserInfo');
+        var button = $('#EditCloseUserInfo');
+        userInfo.toggle();
+        if (userInfo.css('display') == 'block') button.prop('innerText', 'Close');
+        else button.prop('innerText', 'Edit');
+    }
+</script>
+
+<link rel="stylesheet" type="text/css" href="~/Content/approaching-mastery_forms.css" />
+<div class="editHeader">
+    <table style="width:100%;">
+        <tr>
+            <td style="text-align:left">
+                <h6 style="margin-left:10px;">User Information</h6>
+            </td>
+            <td style="text-align:right;">
+                <button id="EditCloseUserInfo" onclick="showUserInfo();">Edit</button>
+            </td>
+        </tr>
+    </table>
+    <hr />
+
+    @{
+        string action = Model.IsEditing ? "EditUserProfile" : "AddUser";
+        using (Ajax.BeginForm(action, "User", new AjaxOptions { HttpMethod = "POST", OnSuccess = "loadUserInfo" }))
+        {
+            <div id="UserInfo" class="editor">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.IsEditing)
+                <div class="inputBox">
+                    <!-- First Name-->
+                    @Html.LabelFor(m => m.FirstName)<span>*</span>
+                    @Html.TextBoxFor(m => m.FirstName, new { @id = "firstName" })
+                    <div>@Html.ValidationMessageFor(m => m.FirstName)</div>
+                </div>
+                <div class="inputBox">
+                    <!-- Middle Name-->
+                    @Html.LabelFor(m => m.MiddleName)
+                    @Html.TextBoxFor(m => m.MiddleName)
+                    <div>@Html.ValidationMessageFor(m => m.MiddleName)</div>
+                </div>
+                <div class="inputBox">
+                    <!-- Last Name -->
+                    @Html.LabelFor(m => m.LastName) <span> *</span>
+                    @Html.TextBoxFor(m => m.LastName, new { @id = "lastName" })
+                    <div>@Html.ValidationMessageFor(m => m.LastName)</div>
+                </div>
+                <div class="inputBox">
+                    <!-- Phone Number -->
+                    @Html.LabelFor(m => m.PhoneNumber) <span>*</span>
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @id = "phoneNumber" })
+                    <div>@Html.ValidationMessageFor(m => m.PhoneNumber)</div>
+                </div>
+                <div class="inputBox">
+                    @Html.LabelFor(m => m.Class)
+                    @Html.TextBoxFor(m => m.Class)
+                </div>
+                @{ if (Model.IsEditing)
+                    {
+                        <div style="text-align:right;">
+                            <button>Save Changes</button>
+                        </div>
+                    }
+                }
+            </div>
+        }
+    }
+</div>

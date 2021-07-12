@@ -1,0 +1,71 @@
+﻿@model DatabaseInteraction.Models.UserLogin
+
+@{
+    Layout = "~/Views/Shared/NoUser.cshtml";
+    ViewBag.Title = "Sign Up - Approaching Mastery";
+}
+
+@section Scripts
+    {
+    <script src="~/Scripts/Validation.js"></script>
+    <script>
+        function onSubmit(token)
+        {
+            if (checkEmail())
+                document.getElementById("emailCheck").submit();
+            else
+                grecaptcha.reset();
+        }
+
+        function checkEmail()
+        {
+            $("#emailValidationMessage").hide();
+            var text = $("#txbEmailAddress").val();
+            //alert(text);
+            var result = true;
+            var isValid = ValidateEmailAddress(text);
+            var errorLabel = $("#emailErrors");
+            if (!isValid)
+            {
+                errorLabel.text("Please enter a valid email address!");
+                errorLabel.show();
+                result = false;
+            }
+            else
+                errorLabel.hide();
+            return result;
+        }
+
+        $(document).ready(function ()
+        {
+
+            $("#txbEmailAddress").on('change keyup paste', function ()
+            {
+                checkEmail();
+            });
+        });
+    </script>
+}
+<div style="padding-top:50px">
+    @using (Html.BeginForm("EmailCheck", "SignUp", FormMethod.Post, new { @id = "emailCheck" }))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <div class="modal-header">
+                <h4 class="modal-title">Before you can sign up, we must check that your school district has set up an account with us.</h4>
+                <h4 class="modal-title">Please enter your email address then proceed to the next step</h4>
+            </div>
+            <div class="container">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @id = "txbEmailAddress" })
+                <div id="emailValidationMessage">@Html.ValidationMessageFor(m => m.Email)</div>
+                <div class="has-error" id="emailErrors" hidden="hidden">Uh Oh</div>
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            </div>
+            <div class="container">
+                <button class="g-recaptcha" data-sitekey="6LdUAZgUAAAAAPKz9tVKOmKcL-Ik6VQ7pCRmWngO" data-callback="onSubmit" type="submit">Check Email!</button>
+            </div>
+
+        </div>
+    }
+</div>

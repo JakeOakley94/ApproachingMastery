@@ -1,0 +1,34 @@
+﻿@model ApproachingMastery.Models.TestYearModal
+
+@{
+    Layout = null;
+}
+
+<script>
+    function testYearUpdated(data) {
+
+        alert(data.Message)
+        if (data.Success) {
+            if (data.TestType == 1)
+                loadSRI();
+            if (data.TestType == 2)
+                loadProCore();
+            if (data.TestType == 3)
+                loadTenMark();
+            cancelAddEditTest();
+        }
+
+
+    }
+</script>
+
+
+<div class="modal-content animate">
+
+    @using (Ajax.BeginForm("EditTestYear", "Student", new AjaxOptions { HttpMethod = "POST", OnSuccess = "testYearUpdated" }))
+    {
+
+        @Html.AntiForgeryToken();
+        @Html.EditorFor(m => m);
+    }
+</div>

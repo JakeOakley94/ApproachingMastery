@@ -1,0 +1,18 @@
+﻿@using DatabaseInteraction.Models;
+@model UserLogin
+@{
+    ViewBag.Title = "Confirm Your Email Address";
+    Layout = "~/Views/Shared/NoUser.cshtml";
+}
+
+<div class="container" style="padding-top:50px">
+
+    @if (!Model.IsEmailVerified)
+    {
+        <h1 class="modal-header">You must confirm your email address to continue</h1>
+    }
+    else
+    {
+        <h1 class="modal-header">Congratulations! You can now log in!</h1>
+    }
+</div>

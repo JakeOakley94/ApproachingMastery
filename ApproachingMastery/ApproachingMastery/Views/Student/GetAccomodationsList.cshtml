@@ -1,0 +1,193 @@
+﻿@using DatabaseInteraction.Models
+@using System.Linq
+@using ApproachingMastery.Controllers
+@model Student
+
+@{
+
+    Layout = null;
+
+}
+
+<script>
+
+
+    $(function () {
+        $(".addAccommodationDetail").click(function () {
+            var accommodationID = $(this).attr("accommodationID");
+            $.ajax({
+                method: 'GET',
+                url: addAccommodationDetailURL,
+                data: {
+                    accommodationID: accommodationID
+                },
+                datatype: 'json',
+                success: function (data) {
+                    if (data.Success) {
+                        $("#AddEditGoal").html(data.html);
+                        $("#AddEditGoalModal").modal('show');
+                    }
+                    else {
+                        alert(data.Message);
+                        dialogOpen = false;
+                    }
+
+                },
+                error: function () {
+                    alert("Error getting accommodation!");
+                }
+
+            });
+        });
+    });
+
+
+    $(function () {
+        $(".editAccommodationDetail").click(function () {
+            var accommodationID = $(this).attr("accommodationID");
+            var detailTypeID = $(this).attr("detailType");
+            $.ajax({
+                method: 'GET',
+                url: editAccommodationDetailURL,
+                data: {
+                    accommodationID: accommodationID,
+                    detailType: detailTypeID
+                },
+                datatype: 'json',
+                success: function (data) {
+                    if (data.Success) {
+                        $("#AddEditGoal").html(data.html);
+                        $("#AddEditGoalModal").modal('show');
+                    }
+                    else {
+                        alert(data.Message);
+                        dialogOpen = false;
+                    }
+
+                },
+                error: function () {
+                    alert("Error getting accommodation detail!");
+                }
+
+            });
+        });
+    });
+
+    $(function () {
+        $(".removeAccommodation").click(function () {
+            dialogOpen = true;
+            if (confirm("Are you sure you would like to delete this accommodation?")) {
+                var accommodationID = $(this).attr("accommodationID");
+                $.ajax({
+                    method: 'POST',
+                    url: deleteAccommodationURL,
+                    data: {
+                        accommodationID: accommodationID
+                    },
+                    datatype: 'json',
+                    success: function (data) {
+                        alert(data.Message);
+                        if (data.Success)
+                            loadAccomodationsList();
+                        dialogOpen = false;
+                    },
+                    error: function () {
+                        alert("Error removing assginment!");
+                        loadAccomodationsList();
+                        dialogOpen = false;
+                    }
+                });
+            }
+        })
+    })
+
+    $(function () {
+        $(".removeAccommodationDetail").click(function () {
+            dialogOpen = true;
+            if (confirm("Are you sure you would like to delete this accommodation?")) {
+                var accommodationID = $(this).attr("accommodationID");
+                var detailTypeID = $(this).attr("detailType")
+
+                $.ajax({
+                    method: 'POST',
+                    url: deleteAccommodationDetailURL,
+                    data: {
+                        accommodationID: accommodationID,
+                        detailType: detailTypeID
+                    },
+                    datatype: 'json',
+                    success: function (data) {
+                        alert(data.Message);
+                        if (data.Success)
+                            loadAccomodationsList();
+                        dialogOpen = false;
+                    },
+                    error: function () {
+                        alert("Error removing assginment!");
+                        loadAccomodationsList();
+                        dialogOpen = false;
+                    }
+                });
+            }
+        })
+    })
+
+</script>
+
+<h4 class="boldText">
+    <span style="display:inline-block; width:250px"><u>Accommodation List</u></span>
+    <a href="#" class="btn btn-default" onclick="AddAccommodation()">
+        <i class="fas fa-plus"></i>
+    </a>
+</h4>
+@if (Model.Accomodations == null || Model.Accomodations.Count == 0)
+{
+    <div>
+        No accommodations for this student exist!
+    </div>
+}
+else
+{
+    <ul>
+        @foreach (Accomodation a in Model.Accomodations)
+        {
+            <li style="margin:10px; vertical-align:central">
+
+                <div>
+                    <span style="display:inline-block;width:200px;">@a.strAccomodation</span>
+                    <a href="#" accommodationID="@a.AccomodationID" class="btn btn-default addAccommodationDetail">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                    <a href="#" accommodationID="@a.AccomodationID" class="btn btn-danger removeAccommodation">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </div>
+
+                @if (a.AccomodationDetails != null)
+                {
+                    <ul>
+                        @foreach (AccomodationDetail d in a.AccomodationDetails)
+                        {
+                            <li style="margin:10px; vertical-align:central">
+                                <div>
+                                    <span style="display:inline-block;width:200px;">
+                                        @RazorHelpers.GetDisplayName(d.DetailType):@d.Value
+                                    </span>
+                                    <a href="#" accommodationID="@a.AccomodationID" detailType="@d.DetailType" class="btn btn-default editAccommodationDetail">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <a href="#" accommodationID="@a.AccomodationID" detailType="@d.DetailType" class="btn btn-danger removeAccommodationDetail">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+
+            </li>
+        }
+    </ul>
+}
+
+

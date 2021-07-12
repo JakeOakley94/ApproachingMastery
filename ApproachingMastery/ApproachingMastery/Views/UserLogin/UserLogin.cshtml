@@ -1,0 +1,56 @@
+﻿@model  DatabaseInteraction.Models.UserLogin
+@{
+    Layout = "";
+}
+
+
+
+@using (Html.BeginForm("UserLogin","UserLogin", FormMethod.Post, new { @id="loginForm"}))
+{
+    
+    <!--<script type="text/javascript">
+        grecaptcha.ready(function ()
+        {
+            grecaptcha.execute('6LcVAJgUAAAAAPXPwBSXPRzc7W8UnHC4KQPvHKE-', { action: 'login_view' }).then(function (token)
+            {
+
+            });
+        });
+    </script>-->
+    <div class="modal-content animate">
+        <div class="modal-header">
+            <h4 class="modal-title">Sign in to start your session</h4>
+        </div>
+
+        <div class="container" style="width: 100%;">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email)
+            <br />
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password)
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            <script type="text/javascript">
+                function onSubmit(token)
+                {
+                    document.getElementById("loginForm").submit();
+                }
+            </script>
+            
+
+            <button class="btn btn-success bootStrapButtons buttonAnimation g-recaptcha" data-sitekey="6LdUAZgUAAAAAPKz9tVKOmKcL-Ik6VQ7pCRmWngO" data-callback="onSubmit" type="submit"><span>Login</span></button>
+                <!-- We Can add this later, Remember me button
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+        -->
+            </div>
+
+        <div class="container" style="background-color:#f1f1f1; width: 100%;">
+            <button type="button" onclick="document.getElementById('loginModal').style.display='none'" class="cancelbtn" value="Login">Cancel</button>
+            <span class="psw">Forgot @Html.ActionLink("password?","ForgotPassword","UserLogin")</span>
+        </div>
+        <div class="container" style="background-color:#f1f1f1; width: 100%;">
+            <span class="psw">Don't have an acount? @Html.ActionLink("Create one here!", "Index","SignUp")</span>
+        </div>
+    </div>
+}

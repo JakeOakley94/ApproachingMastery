@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+<!--First Chart-->
+<script type="text/javascript">
+  window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+
+      axisY:{
+       title: "Scores",
+       interlacedColor: "#F8F1E4",
+       tickLength: 50
+      },
+
+      data: [
+      {
+        type: "line",
+        dataPoints: [
+        { x: 10, y: 325, label:"Fall 2018" },
+        { x: 20, y: 550, label: "Winter 2018" },
+        { x: 30, y: 500, label: "Spring 2018" },
+        { x: 40, y: 670, label: "Fall 2019" },
+        { x: 50, y: 720, label: "Winter 2019" },
+        { x: 60, y: 680, label: "Spring 2019" },
+        ]
+      }
+      ]
+    });
+
+    chart.render();
+
+    var chart2 = new CanvasJS.Chart("chartContainerTwo",
+  {
+
+      axisY: {
+          title: "Scores %",
+          interlacedColor: "#F8F1E4",
+          tickLength: 10
+      },
+
+      data: [
+      {
+          type: "column",
+          dataPoints: [
+          { x: 10, y: 67, label: "Assignemnt #1" },
+          { x: 20, y: 70, label: "Assignemnt #2" },
+          { x: 30, y: 68, label: "Assignemnt #3" },
+          { x: 40, y: 89, label: "Assignemnt #4" },
+          { x: 50, y: 87, label: "Assignemnt #5" },
+          { x: 60, y: 92, label: "Assignemnt #6" },
+          ]
+      }
+      ]
+  });
+
+    chart2.render();
+  }
+</script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<h3>SRI Tests 2018-2019</h3>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+<!--Second Chart-->
+
+<h3 style="margin-top: 190px;">Academic Reading Assignemnts</h3>
+<div id="chartContainerTwo" style="height: 300px; width: 100%; margin-bottom: 100px;"></div>

@@ -1,0 +1,29 @@
+﻿@model DatabaseInteraction.Models.Assignment
+@{
+    Layout = null;
+}
+
+
+
+<!-- Main Content -->
+<div class="container" style="width: 100%;">
+    @Html.HiddenFor(m => m.GoalID)
+    @Html.HiddenFor(m=>m.AssignmentID)
+    @Html.HiddenFor(m => m.AddedBy)
+    <br />
+    <!--Radio button for Goal or Objective-->
+    @Html.LabelFor(m => m.Details, "Assignment Details")
+    @Html.EditorFor(m => m.Details)
+    <br />
+    @Html.LabelFor(m => m.Score)
+    @Html.EditorFor(m => m.Score)
+
+    @Html.LabelFor(m => m.CompletionDate, "Date of Test")
+    @Html.TextBoxFor(m => m.CompletionDate, new { @type = "Date"})
+
+</div>
+<!-- Footer and buttons -->
+<div class="container" style="background-color:#f1f1f1; width: 100%;">
+    <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+    <button type="button" onclick="document.getElementById('AddEditGoalModal').modal('hide'); dialogOpen = false;" class="cancelbtn btn btn-danger bootStrapButtons buttonAnimation"><span>Cancel</span></button>
+</div>

@@ -1,0 +1,81 @@
+﻿@using DatabaseInteraction.Models
+@using System.Linq
+@model Student
+@{
+
+    Layout = null;
+}
+<style>
+
+</style>
+<script>
+    $(function () {
+        $(".editABCEntry").click(function () {
+            loadEditModal($(this), editABCEntryURL, $("#abcChartContent"), $("#abcChartModal"), "entryID");
+        });
+    });
+
+    $(function () {
+        $(".deleteABCEntry").click(function () {
+            if (confirm("Are you sure you would like to delete this entry?")) {
+                var id = $(this).attr('data-id');
+                $.ajax({
+                    method: 'POST',
+                    url: deleteABCEntryURL,
+                    data: { entryID: id },
+                    datatype: 'json',
+                    success: function (data) {
+                        alert(data.Message);
+                        if (data.Success)
+                            loadABCChart();
+                    },
+                    error: function () {
+                        alert("Error removing ABC Entry");
+                        loadABCChart();
+                    }
+                });
+            }
+        });
+    })
+
+</script>
+
+<table class="TableFormat" id="abcChartTable">
+    <tr>
+        <th>Date</th>
+        <th>Antecedent</th>
+        <th>Behavior</th>
+        <th>Consequence</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    <!-- Need to dynamically populate these / placeholder -->
+    @{
+        if (Model.ABCEntries != null && Model.ABCEntries.Count > 0)
+        {
+            foreach (ABCEntry abc in Model.ABCEntries)
+            {
+                string formattedDate = abc.IncidentDate.ToString("MM/dd/yyyy");
+                <tr>
+                    <td> @formattedDate </td>
+                    <td class="multiline"> @abc.Antecedent </td>
+                    <td class="multiline"> @abc.Behavior </td>
+                    <td class="multiline"> @abc.Consequence </td>
+                    <td><a href="javascript:void(0);" data-id="{@abc.ABCID}" class="btn btn-danger editABCEntry"><i class="fas fa-pencil-alt"></i></a></td>
+                    <td><a href="javascript:void(0);" data-id="{@abc.ABCID}" class="btn btn-danger deleteABCEntry"><i class="fas fa-trash-alt"></i></a></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td style="{column-span: all; -webkit-column-count:all; -moz-column-count: all} ">No Data Exists!</td>
+            </tr>
+        }
+    }
+
+
+</table>
+
+<button class="btn btn-primary bootStrapButtons buttonAnimation addTestingDataButton" id="btnAddBehavior" onclick="AddABCEntry();" style="        width: 190px !important"><span><i class="fa fa-plus"></i> Add Behavior incident</span></button>

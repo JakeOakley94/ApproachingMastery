@@ -1,0 +1,19 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DatabaseInteraction.Properties" GeneratedClassName="DBSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ApplicationDBConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=sqlapproachingmastery.cwubp8kfylt6.us-east-2.rds.amazonaws.com,1433;Initial Catalog=dbApproachingMastery;User ID=webAppLogin
+; Password=SV`r8?6:"CVD;MultipleActiveResultSets=True</Value>
+    </Setting>
+    <Setting Name="DoNotReplyAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">do-not-reply@approaching-mastery.com</Value>
+    </Setting>
+    <Setting Name="DoNotReplyPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MbwSNY586s</Value>
+    </Setting>
+    <Setting Name="EmailHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">smtp.gmail.com</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

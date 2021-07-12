@@ -1,0 +1,206 @@
+﻿@using ApproachingMastery.Models
+@model AddEditAccount
+
+
+@{
+    Layout = "~/Views/Shared/NoUser.cshtml";
+}
+
+@section Scripts{
+    <script src="~/Scripts/Validation.js"></script>
+
+    <script>
+        function CheckPassword() {
+            var passwordErrors = $("#passwordErrors");
+            var password = $("#Password").val();
+            var confirmPassword = $("#ConfirmPassword").val();
+            let error = { message: "" };
+            var result = ValidatePassword(password, confirmPassword, error)
+            if (!result) {
+                if (error != null) passwordErrors.text(error.message);
+                passwordErrors.show();
+            }
+            else {
+                passwordErrors.hide();
+            }
+            return result;
+        }
+        function CheckConfirmPassword() {
+            var result = false;
+            if ($("#ConfirmPassword").val() !== $("#Password").val()) {
+                $("#confirmPasswordErrors").text("Password and Confirm Password must match");
+                $("#confirmPasswordErrors").show();
+            }
+            else {
+                result = true;
+                $("#confirmPasswordErrors").hide();
+            }
+            return result;
+        }
+
+        function SetColors(obj, error) {
+            if (error) {
+                obj.css("background-color", "red");
+                obj.css("color", "white");
+            }
+            else {
+                obj.css("background-color", "green");
+                obj.css("color", "white");
+            }
+        }
+
+        function ValidateFirstName() {
+            var obj = $("#firstName");
+            var result = ValidateNotEmpty(obj.val());
+            if (!result) {
+                SetColors(obj, true);
+            }
+            else {
+                SetColors(obj, false);
+            }
+            return result;
+
+        }
+
+        function ValidateLastName() {
+            var obj = $("#lastName");
+            var result = ValidateNotEmpty(obj.val());
+            if (!result) {
+                SetColors(obj, true);
+            }
+            else {
+                SetColors(obj, false);
+            }
+            return result;
+        }
+        function CheckPhoneNumber() {
+            var obj = $("#phoneNumber");
+            var result = ValidatePhoneNumber("US", obj.val());
+            if (!result) SetColors(obj, true);
+            else SetColors(obj, false);
+            return result;
+        }
+
+        function EnableDisableSubmit(on) {
+            if (on) $("#submit").removeAttr("disabled", "disabled");
+            else $("#submit").attr("disabled", "disabled");
+        }
+
+        function submitForm() {
+            if (ValidateForm()) {
+                $("#newAccountForm").submit();
+            }
+        }
+
+        $(document).ready(function () {
+            $("#errorModal").show();
+
+            $("#Password").on('Change keyup paste', function () {
+                CheckPassword();
+            });
+
+            $("#firstName").on('Change keyup paste', function () {
+                ValidateFirstName();
+            });
+
+            $("#lastName").on('Change keyup paste', function () {
+                ValidateLastName();
+            });
+
+            $("#phoneNumber").on('Change keyup paste', function () {
+                CheckPhoneNumber();
+            });
+
+            $("#ConfirmPassword").on('Change keyup paste', function () {
+                CheckConfirmPassword();
+            });
+
+        });
+        function ValidateForm() {
+            var result = true;
+            if (!CheckPassword()) result = false;
+            if (!ValidateFirstName()) result = false;
+            if (!ValidateLastName()) result = false;
+            if (!CheckPhoneNumber()) result = false;
+            if (!CheckConfirmPassword()) result = false;
+            return result;
+        }
+
+        function ShowHideErrorModal(show) {
+            if (show)
+                $("#errorModal").show();
+            else
+                $("#errorModal").hide();
+        }
+
+
+/**/</script>
+}
+
+
+<div class="container" style="padding-top:50px">
+    @using (Html.BeginForm("CreateAccount", "SignUp", FormMethod.Post, new { @id = "newAccountForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <div class="modal-header">
+                <h4>Login Information</h4>
+            </div>
+            <!-- Email address -->
+            @Html.LabelFor(m => m.UserLogin.Email)
+            <div>@(Session["EmailAddress"].ToString())</div>
+
+            <!-- Password -->
+            @Html.LabelFor(m => m.UserLogin.Password)*
+            @Html.PasswordFor(m => m.UserLogin.Password, new { @id = "Password" })
+            <div>@Html.ValidationMessageFor(m => m.UserLogin.Password)</div>
+            <div class="has-error" id="passwordErrors" hidden="hidden" style="white-space:pre-line"></div>
+
+            <!-- Confirm Password -->
+            @Html.LabelFor(m => m.UserLogin.ConfirmPassword)*
+            @Html.PasswordFor(m => m.UserLogin.ConfirmPassword, new { @id = "ConfirmPassword" })
+            <div class="has-error" hidden="hidden" id="confirmPasswordErrors" style="white-space:pre-line"></div>
+            <div>@Html.ValidationMessageFor(m => m.UserLogin.ConfirmPassword)</div>
+
+            <div class="modal-header">
+                <h4>User Information</h4>
+            </div>
+            <!-- First Name-->
+            @Html.LabelFor(m => m.UserInformation.FirstName)*
+            @Html.TextBoxFor(m => m.UserInformation.FirstName, new { @id = "firstName" })
+            <div>@Html.ValidationMessageFor(m => m.UserInformation.FirstName)</div>
+
+            <!-- Middle Name-->
+            @Html.LabelFor(m => m.UserInformation.MiddleName)
+            @Html.TextBoxFor(m => m.UserInformation.MiddleName)
+            <div>@Html.ValidationMessageFor(m => m.UserInformation.MiddleName)</div>
+
+            <!-- Last Name -->
+            @Html.LabelFor(m => m.UserInformation.LastName)*
+            @Html.TextBoxFor(m => m.UserInformation.LastName, new { @id = "lastName" })
+            <div>@Html.ValidationMessageFor(m => m.UserInformation.LastName)</div>
+
+            <!-- Phone Number -->
+            @Html.LabelFor(m => m.UserInformation.PhoneNumber)*
+            @Html.TextBoxFor(m => m.UserInformation.PhoneNumber, new { @id = "phoneNumber" })
+            <div>@Html.ValidationMessageFor(m => m.UserInformation.PhoneNumber)</div>
+        </div>
+    }
+    <!-- Put the button outside of the form so that it can be validated before submitting the form-->
+    <button id="submit" onclick="submitForm()">Create New Account!</button>
+</div>
+
+@if (ViewBag.ErrorMessage != null && ViewBag.ErrorMessage.Trim() != string.Empty)
+{
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Error!</h4>
+            </div>
+            <div class="container">
+                <span>@ViewBag.ErrorMessage</span>
+                <button onclick="ShowHideErrorModal(false)">OK</button>
+            </div>
+        </div>
+    </div>
+}

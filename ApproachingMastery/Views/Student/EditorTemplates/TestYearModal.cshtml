@@ -1,0 +1,64 @@
+﻿@using DatabaseInteraction.Models
+@using System.Collections.Generic
+@model ApproachingMastery.Models.TestYearModal
+
+@{
+    Layout = null;
+}
+
+<script>
+    function cancelAddEditTest() {
+        $("#AddEditTestModal").modal("hide");
+    }
+</script>
+
+<div class="modal-header">
+    <!-- Dynamically insert students name -->
+    <h4 class="modal-title">@Model.TestType</h4>
+    @Html.HiddenFor(m => m.TestType)
+    <div class="container" style="width:100%">
+
+
+        @{
+            @Html.LabelFor(m => m.Year)
+            @Html.EditorFor(m => m.Year)
+
+
+            <fieldset class="amForm inputBox" style="text-align:left;">
+                @Html.HiddenFor(m => m.Fall.TestID)
+                <h4>@Model.Fall.Semester</h4>
+                @Html.HiddenFor(m => m.Fall.Semester)
+                <br />
+                @Html.LabelFor(m => m.Fall.Score)
+                @Html.EditorFor(m => m.Fall.Score)
+            </fieldset>
+            <fieldset class="amForm inputBox" style="text-align:left;">
+                @Html.HiddenFor(m => m.Winter.TestID)
+                <h4>@Model.Winter.Semester</h4>
+                @Html.HiddenFor(m => m.Winter.Semester)
+                <br />
+                @Html.LabelFor(m => m.Winter.Score)
+                @Html.EditorFor(m => m.Winter.Score)
+            </fieldset>
+            <fieldset class="amForm inputBox" style="text-align:left;">
+                @Html.HiddenFor(m => m.Spring.TestID)
+                @Html.HiddenFor(m => m.Spring.Semester)
+                <h4>@Model.Spring.Semester</h4>
+                <br />
+                @Html.LabelFor(m => m.Spring.Score)
+                @Html.EditorFor(m => m.Spring.Score)
+            </fieldset>
+            <fieldset class="amForm inputBox" style="text-align:left;">
+                @Html.HiddenFor(m => m.Summer.TestID)
+                @Html.HiddenFor(m => m.Summer.Semester)
+                <h4>@Model.Summer.Semester</h4>
+                <br />
+                @Html.LabelFor(m => m.Summer.Score)
+                @Html.EditorFor(m => m.Summer.Score)
+            </fieldset>
+        }
+
+    </div>
+    <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+    <button type="button" onclick="cancelAddEditTest()" class="cancelbtn btn btn-danger bootStrapButtons buttonAnimation"><span>Cancel</span></button>
+</div>

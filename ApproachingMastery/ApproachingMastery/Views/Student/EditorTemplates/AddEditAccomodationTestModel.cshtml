@@ -1,0 +1,84 @@
+﻿@model  ApproachingMastery.Models.AddEditAccomodationTestModel
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/approaching-mastery_forms.css" />
+
+<script>
+    function cancelAccomodationTest() {
+        $("#editAccomodationTest").modal("hide");
+        $("#addAccomodationTest").modal("hide");
+    }
+
+/**/</script>
+
+<div class="modal-header">
+    <!-- Dynamically insert AirTests  -->
+
+    @{
+        if (!Model.IsEditing)
+        {
+            <h4 class="modal-title">Add an Accomodation Test</h4>
+        }
+        else
+        {
+            <h4 class="modal-title">Edit Accomodation Test</h4>
+        }
+    }
+
+    <div class="container" style="width: 100%;">
+
+
+        <fieldset id="newAccomodationTestField" class="amForm">
+
+            @Html.HiddenFor(m => m.Test.TestID)
+
+            <fieldset id="accomodationSelect" class="amForm">
+                @Html.LabelFor(m => m.Test.AccomodationID, "Accomodation Test is For")
+                @Html.DropDownListFor(m => m.Test.AccomodationID, new SelectList(Model.s.Accomodations, "AccomodationID", "strAccomodation"))
+            </fieldset>
+
+
+            <div class="inputBox" style="width:98% !important;">
+
+
+                @Html.LabelFor(m => m.Test.Date, "Test Date")
+                @Html.TextBoxFor(m => m.Test.Date, new { @type = "Date", @min = "1950", @max = "3000" })
+
+            </div>
+
+
+            <div class="inputBox" style="width:98% !important;">
+
+
+                @Html.LabelFor(m => m.Test.TestGiven, "Test Given")
+                @Html.TextBoxFor(m => m.Test.TestGiven)
+
+            </div>
+
+            <div class="inputBox">
+
+                @Html.LabelFor(m => m.Test.Percentile, "Grade")
+                @Html.TextBoxFor(m => m.Test.Percentile, new { @type = "number", @min = "0", @max = "10000" })
+
+            </div>
+
+            <div class="inputBox">
+
+                @Html.LabelFor(m => m.Test.Type, "Test Subject Area")
+                @Html.EnumDropDownListFor(m => m.Test.Type)
+            </div>
+
+
+        </fieldset>
+
+
+    </div>
+    <!-- Footer and buttons -->
+    <div class="container" style="background-color:#f1f1f1; width: 100%;">
+        <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+        <button type="button" onclick="cancelAccomodationTest()" class="cancelbtn btn btn-danger bootStrapButtons buttonAnimation"><span>Cancel</span></button>
+    </div>
+</div>

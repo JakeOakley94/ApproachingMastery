@@ -1,0 +1,26 @@
+﻿@using DatabaseInteraction.Models
+@model User
+
+@{
+    Layout = null;
+}
+
+
+<link rel="stylesheet" type="text/css" href="~/Content/approaching-mastery_forms.css" />
+<style>
+    .editHeader {
+        margin: 10px;
+        border: 1px solid lightgrey;
+    }
+
+    .editor {
+        display: none;
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+<div id="profileEditor">
+    @{
+        @Html.EditorFor(m => m);
+    }
+</div>

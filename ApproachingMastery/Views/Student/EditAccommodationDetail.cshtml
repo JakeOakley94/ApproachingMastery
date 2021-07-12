@@ -1,0 +1,41 @@
+﻿@model  DatabaseInteraction.Models.AccomodationDetail
+@{
+    Layout = "";
+}
+
+<script>
+    function accommodationDetailEdited(data) {
+        if (data.Success) {
+            $("#AddEditGoalModal").modal('hide');
+        }
+        alert(data.Message);
+        loadAccomodationsList();
+    }
+</script>
+
+<div class="modal-content animate">
+    <div class="modal-header">
+        <!-- Dynamically insert students name -->
+        <h4 class="modal-title">Add new accommodation detail</h4>
+    </div>
+
+    @using (Ajax.BeginForm("EditAccommodationDetail", "Student", new AjaxOptions { HttpMethod = "POST", OnSuccess = "accommodationDetailEdited" }))
+    {
+        <!-- Main Content -->
+        <div class="container" style="width: 100%;">
+            @Html.HiddenFor(m => m.AccomodationID)
+            <br />
+            @Html.HiddenFor(m => m.DetailType)
+            <br />
+            @Html.LabelFor(m => m.Value)
+            @Html.EditorFor(m => m.Value)
+        </div>
+        <!-- Footer and buttons -->
+        <div class="container" style="background-color:#f1f1f1; width: 100%;">
+            <button class="btn btn-success bootStrapButtons buttonAnimation" type="submit"><span>Save Changes</span></button>
+            <button type="button" onclick="$('#AddEditGoalModal').modal('hide');" class="cancelbtn btn btn-danger bootStrapButtons buttonAnimation"><span>Cancel</span></button>
+        </div>
+    }
+
+</div>
+

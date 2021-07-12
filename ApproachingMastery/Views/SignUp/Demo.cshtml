@@ -1,0 +1,16 @@
+﻿@using DatabaseInteraction.Models
+@model Student
+@{
+    ViewBag.Title = "Demo";
+    Layout = "~/Views/Shared/NoUser.cshtml";
+}
+
+<h2>Demo</h2>
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @foreach(Accomodations ac in Student.Accomodations)
+    {
+        @Html.CheckBoxFor(m => ac.IsSelected);
+    }
+}

@@ -1,0 +1,26 @@
+﻿@model  ApproachingMastery.Models.AddEditAirTestModal
+@{
+    Layout = "";
+}
+
+<script>
+
+        function AirTestAdded(data) {
+            loadAirTests();
+            $("#AddEditGoalModal").modal("hide");
+            
+    }
+
+</script>
+
+
+<div class="modal-content animate">
+    
+        @using (Ajax.BeginForm("AddAirTest", "Student", new AjaxOptions { HttpMethod = "POST", OnSuccess = "AirTestAdded" }))
+        {
+            @Html.AntiForgeryToken();
+            @Html.EditorFor(m => m);
+
+       }
+    
+</div>

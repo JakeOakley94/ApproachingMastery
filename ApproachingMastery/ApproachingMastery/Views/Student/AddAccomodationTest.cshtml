@@ -1,0 +1,26 @@
+﻿@model  ApproachingMastery.Models.AddEditAccomodationTestModel
+@{
+    Layout = "";
+}
+
+<script>
+
+    function AccomodationTestAdded(data) {
+        alert(data.Message);
+        loadAccomodations();
+        $("#addAccomodationTest").modal("hide");
+
+    }
+
+</script>
+
+
+<div class="modal-content animate">
+
+    @using (Ajax.BeginForm("AddAccomodationTest", "Student", new AjaxOptions { HttpMethod = "POST", OnSuccess = "AccomodationTestAdded" }))
+    {
+        @Html.AntiForgeryToken();
+        @Html.EditorFor(m => m);
+    }
+
+</div>
